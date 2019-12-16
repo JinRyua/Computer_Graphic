@@ -14,19 +14,9 @@ int ast = 0;
  float r = 7;
  float tx, ty, tz, trot;
  int g_nSkySize = 500;
-// struct vec {
-//	float x;
-//	float y;
-//	float z;
-//};
+
  GLuint texname[1];
  GLuint g_nCubeTex;
-// struct block {
-//	int name;
-//	int color;
-//	GLfloat matrix[16];
-//	vec crash[2];
-//};
  GLfloat temp_matrix[16];
 
  vector<block> a;
