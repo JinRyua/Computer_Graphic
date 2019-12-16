@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+<script src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/osd.js"></script><script src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/show_ads_impl_fy2019.js" id="google_shimpl"></script><script async="" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/analytics.js"></script><script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+</script>
+<script type="text/javascript" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/MathJax.js">
+</script>
+
+<script language="javascript">
+function Cofactor()
+{
+    // 入力したデータAB
+    M11 = document.calForm.m11.value ;
+    M12 = document.calForm.m12.value ;
+    M13 = document.calForm.m13.value ;
+    M14 = document.calForm.m14.value ;
+    M21 = document.calForm.m21.value ;
+    M22 = document.calForm.m22.value ;
+    M23 = document.calForm.m23.value ;
+    M24 = document.calForm.m24.value ;
+    M31 = document.calForm.m31.value ;
+    M32 = document.calForm.m32.value ;
+    M33 = document.calForm.m33.value ;
+    M34 = document.calForm.m34.value ;
+    M41 = document.calForm.m41.value ;
+    M42 = document.calForm.m42.value ;
+    M43 = document.calForm.m43.value ;
+    M44 = document.calForm.m44.value ;
+
+    // 計算式
+    det = (M11 * M22 * M33 * M44 ) + (M11 * M23 * M34 * M42 ) + (M11 * M24 * M32 * M43 ) 
+    - (M11 * M24 * M33 * M42 ) - (M11 * M23 * M32 * M44 ) - (M11 * M22 * M34 * M43 ) 
+    - (M12 * M21 * M33 * M44 ) - (M13 * M21 * M34 * M42 ) - (M14 * M21 * M32 * M43 )
+    + (M14 * M21 * M33 * M42 ) + (M13 * M21 * M32 * M44 ) + (M12 * M21 * M34 * M43 )
+    + (M12 * M23 * M31 * M44 ) + (M13 * M24 * M31 * M42 ) + (M14 * M22 * M31 * M43 )
+    - (M14 * M23 * M31 * M42 ) - (M13 * M22 * M31 * M44 ) - (M12 * M24 * M31 * M43 )
+    - (M12 * M23 * M34 * M41 ) - (M13 * M24 * M32 * M41 ) - (M14 * M22 * M33 * M41 )
+    + (M14 * M23 * M32 * M41 ) + (M13 * M22 * M34 * M41 ) + (M12 * M24 * M33 * M41 );	
+    ans11 = (M22*M33*M44 + M23*M34*M42 + M24*M32*M43 - M24*M33*M42 - M23*M32*M44 - M22*M34*M43)/det;
+    ans12 = (-M12*M33*M44 - M13*M34*M42 - M14*M32*M43 + M14*M33*M42 + M13*M32*M44 + M12*M34*M43)/det;
+    ans13 = (M12*M23*M44 + M13*M24*M42 + M14*M22*M43 - M14*M23*M42 - M13*M22*M44 - M12*M24*M43)/det;
+    
+    ans14 = (-M12*M23*M34 - M13*M24*M32 - M14*M22*M33 + M14*M23*M32 + M13*M22*M34 + M12*M24*M33)/det;
+    
+    ans21 = (-M21*M33*M44 - M23*M34*M41 - M24*M31*M43 + M24*M33*M41 + M23*M31*M44 + M21*M34*M43)/det;
+    ans22 = (M11*M33*M44 + M13*M34*M41 + M14*M31*M43 - M14*M33*M41 - M13*M31*M44 - M11*M34*M43)/det;
+    ans23 = (-M11*M23*M44 - M13*M24*M41 - M14*M21*M43 + M14*M23*M41 + M13*M21*M44 + M11*M24*M43)/det;
+    ans24 = (M11*M23*M34 + M13*M24*M31 + M14*M21*M33 - M14*M23*M31 - M13*M21*M34 - M11*M24*M33)/det;
+    ans31 = (M21*M32*M44 + M22*M34*M41 + M24*M31*M42 - M24*M32*M41 - M22*M31*M44 - M21*M34*M42)/det;
+    ans32 = (-M11*M32*M44 - M12*M34*M41 - M14*M31*M42 + M14*M32*M41 + M12*M31*M44 + M11*M34*M42)/det;
+    ans33 = (M11*M22*M44 + M12*M24*M41 + M14*M21*M42 - M14*M22*M41 - M12*M21*M44 - M11*M24*M42)/det;
+    ans34 = (-M11*M22*M34 - M12*M24*M31 - M14*M21*M32 + M14*M22*M31 + M12*M21*M34 + M11*M24*M32)/det;
+    ans41 = (-M21*M32*M43 - M22*M33*M41 - M23*M31*M42 + M23*M32*M41 + M22*M31*M43 + M21*M33*M42)/det;
+    ans42 = (M11*M32*M43 + M12*M33*M41 + M13*M31*M42 - M13*M32*M41 - M12*M31*M43 - M11*M33*M42)/det;
+    ans43 = (-M11*M22*M43 - M12*M23*M41 - M13*M21*M42 + M13*M22*M41 + M12*M21*M43 + M11*M23*M42)/det;
+    ans44 = (M11*M22*M33 + M12*M23*M31 + M13*M21*M32 - M13*M22*M31 - M12*M21*M33 - M11*M23*M32)/det;
+
+    // 計算結果を出力
+    document.calForm.ans11.value = ans11;
+    document.calForm.ans12.value = ans12;
+    document.calForm.ans13.value = ans13;
+    document.calForm.ans14.value = ans14;
+    document.calForm.ans21.value = ans21;
+    document.calForm.ans22.value = ans22;
+    document.calForm.ans23.value = ans23;
+    document.calForm.ans24.value = ans24;
+    document.calForm.ans31.value = ans31;
+    document.calForm.ans32.value = ans32;
+    document.calForm.ans33.value = ans33;
+    document.calForm.ans34.value = ans34;
+    document.calForm.ans41.value = ans41;
+    document.calForm.ans42.value = ans42;
+    document.calForm.ans43.value = ans43;
+    document.calForm.ans44.value = ans44;
+}
+
+</script> 
+	
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="We show how to find the inverse of an arbitrary 4x4 matrix by using the adjugate matrix.
+    There is also an an input form for calculation.">
+    <meta name="keywords" content="inverse, matrix,three by three,adjugate, three columns, three rows, cubic">
+    <link rel="shortcut icon" href="https://semath.info/docs-assets/ico/favicon.png">
+
+    <title>How to find the inverse matrix of a 4x4 matrix &nbsp;  - SEMATH INFO -</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/bootstrap.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/main.css" rel="stylesheet">
+
+	<script src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/jquery.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  <style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.mjx-chtml {display: inline-block; line-height: 0; text-indent: 0; text-align: left; text-transform: none; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; letter-spacing: normal; word-wrap: normal; word-spacing: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; margin: 0; padding: 1px 0}
+.MJXc-display {display: block; text-align: center; margin: 1em 0; padding: 0}
+.mjx-chtml[tabindex]:focus, body :focus .mjx-chtml[tabindex] {display: inline-table}
+.mjx-full-width {text-align: center; display: table-cell!important; width: 10000em}
+.mjx-math {display: inline-block; border-collapse: separate; border-spacing: 0}
+.mjx-math * {display: inline-block; -webkit-box-sizing: content-box!important; -moz-box-sizing: content-box!important; box-sizing: content-box!important; text-align: left}
+.mjx-numerator {display: block; text-align: center}
+.mjx-denominator {display: block; text-align: center}
+.MJXc-stacked {height: 0; position: relative}
+.MJXc-stacked > * {position: absolute}
+.MJXc-bevelled > * {display: inline-block}
+.mjx-stack {display: inline-block}
+.mjx-op {display: block}
+.mjx-under {display: table-cell}
+.mjx-over {display: block}
+.mjx-over > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-under > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-stack > .mjx-sup {display: block}
+.mjx-stack > .mjx-sub {display: block}
+.mjx-prestack > .mjx-presup {display: block}
+.mjx-prestack > .mjx-presub {display: block}
+.mjx-delim-h > .mjx-char {display: inline-block}
+.mjx-surd {vertical-align: top}
+.mjx-mphantom * {visibility: hidden}
+.mjx-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 2px 3px; font-style: normal; font-size: 90%}
+.mjx-annotation-xml {line-height: normal}
+.mjx-menclose > svg {fill: none; stroke: currentColor}
+.mjx-mtr {display: table-row}
+.mjx-mlabeledtr {display: table-row}
+.mjx-mtd {display: table-cell; text-align: center}
+.mjx-label {display: table-row}
+.mjx-box {display: inline-block}
+.mjx-block {display: block}
+.mjx-span {display: inline}
+.mjx-char {display: block; white-space: pre}
+.mjx-itable {display: inline-table; width: auto}
+.mjx-row {display: table-row}
+.mjx-cell {display: table-cell}
+.mjx-table {display: table; width: 100%}
+.mjx-line {display: block; height: 0}
+.mjx-strut {width: 0; padding-top: 1em}
+.mjx-vsize {width: 0}
+.MJXc-space1 {margin-left: .167em}
+.MJXc-space2 {margin-left: .222em}
+.MJXc-space3 {margin-left: .278em}
+.mjx-chartest {display: block; visibility: hidden; position: absolute; top: 0; line-height: normal; font-size: 500%}
+.mjx-chartest .mjx-char {display: inline}
+.mjx-chartest .mjx-box {padding-top: 1000px}
+.MJXc-processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MJXc-processed {display: none}
+.mjx-test {display: block; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.mjx-ex-box-test {position: absolute; width: 1px; height: 60ex}
+.mjx-line-box-test {display: table!important}
+.mjx-line-box-test span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+#MathJax_CHTML_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.mjx-chtml .mjx-noError {line-height: 1.2; vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+.MJXc-TeX-unknown-R {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: normal}
+.MJXc-TeX-unknown-I {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: normal}
+.MJXc-TeX-unknown-B {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: bold}
+.MJXc-TeX-unknown-BI {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: bold}
+.MJXc-TeX-ams-R {font-family: MJXc-TeX-ams-R,MJXc-TeX-ams-Rw}
+.MJXc-TeX-cal-B {font-family: MJXc-TeX-cal-B,MJXc-TeX-cal-Bx,MJXc-TeX-cal-Bw}
+.MJXc-TeX-frak-R {font-family: MJXc-TeX-frak-R,MJXc-TeX-frak-Rw}
+.MJXc-TeX-frak-B {font-family: MJXc-TeX-frak-B,MJXc-TeX-frak-Bx,MJXc-TeX-frak-Bw}
+.MJXc-TeX-math-BI {font-family: MJXc-TeX-math-BI,MJXc-TeX-math-BIx,MJXc-TeX-math-BIw}
+.MJXc-TeX-sans-R {font-family: MJXc-TeX-sans-R,MJXc-TeX-sans-Rw}
+.MJXc-TeX-sans-B {font-family: MJXc-TeX-sans-B,MJXc-TeX-sans-Bx,MJXc-TeX-sans-Bw}
+.MJXc-TeX-sans-I {font-family: MJXc-TeX-sans-I,MJXc-TeX-sans-Ix,MJXc-TeX-sans-Iw}
+.MJXc-TeX-script-R {font-family: MJXc-TeX-script-R,MJXc-TeX-script-Rw}
+.MJXc-TeX-type-R {font-family: MJXc-TeX-type-R,MJXc-TeX-type-Rw}
+.MJXc-TeX-cal-R {font-family: MJXc-TeX-cal-R,MJXc-TeX-cal-Rw}
+.MJXc-TeX-main-B {font-family: MJXc-TeX-main-B,MJXc-TeX-main-Bx,MJXc-TeX-main-Bw}
+.MJXc-TeX-main-I {font-family: MJXc-TeX-main-I,MJXc-TeX-main-Ix,MJXc-TeX-main-Iw}
+.MJXc-TeX-main-R {font-family: MJXc-TeX-main-R,MJXc-TeX-main-Rw}
+.MJXc-TeX-math-I {font-family: MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw}
+.MJXc-TeX-size1-R {font-family: MJXc-TeX-size1-R,MJXc-TeX-size1-Rw}
+.MJXc-TeX-size2-R {font-family: MJXc-TeX-size2-R,MJXc-TeX-size2-Rw}
+.MJXc-TeX-size3-R {font-family: MJXc-TeX-size3-R,MJXc-TeX-size3-Rw}
+.MJXc-TeX-size4-R {font-family: MJXc-TeX-size4-R,MJXc-TeX-size4-Rw}
+@font-face {font-family: MJXc-TeX-ams-R; src: local('MathJax_AMS'), local('MathJax_AMS-Regular')}
+@font-face {font-family: MJXc-TeX-ams-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_AMS-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-B; src: local('MathJax_Caligraphic Bold'), local('MathJax_Caligraphic-Bold')}
+@font-face {font-family: MJXc-TeX-cal-Bx; src: local('MathJax_Caligraphic'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-cal-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-R; src: local('MathJax_Fraktur'), local('MathJax_Fraktur-Regular')}
+@font-face {font-family: MJXc-TeX-frak-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-B; src: local('MathJax_Fraktur Bold'), local('MathJax_Fraktur-Bold')}
+@font-face {font-family: MJXc-TeX-frak-Bx; src: local('MathJax_Fraktur'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-frak-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-BI; src: local('MathJax_Math BoldItalic'), local('MathJax_Math-BoldItalic')}
+@font-face {font-family: MJXc-TeX-math-BIx; src: local('MathJax_Math'); font-weight: bold; font-style: italic}
+@font-face {font-family: MJXc-TeX-math-BIw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Math-BoldItalic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Math-BoldItalic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-R; src: local('MathJax_SansSerif'), local('MathJax_SansSerif-Regular')}
+@font-face {font-family: MJXc-TeX-sans-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-B; src: local('MathJax_SansSerif Bold'), local('MathJax_SansSerif-Bold')}
+@font-face {font-family: MJXc-TeX-sans-Bx; src: local('MathJax_SansSerif'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-sans-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-I; src: local('MathJax_SansSerif Italic'), local('MathJax_SansSerif-Italic')}
+@font-face {font-family: MJXc-TeX-sans-Ix; src: local('MathJax_SansSerif'); font-style: italic}
+@font-face {font-family: MJXc-TeX-sans-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-script-R; src: local('MathJax_Script'), local('MathJax_Script-Regular')}
+@font-face {font-family: MJXc-TeX-script-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Script-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Script-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-type-R; src: local('MathJax_Typewriter'), local('MathJax_Typewriter-Regular')}
+@font-face {font-family: MJXc-TeX-type-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Typewriter-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Typewriter-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-R; src: local('MathJax_Caligraphic'), local('MathJax_Caligraphic-Regular')}
+@font-face {font-family: MJXc-TeX-cal-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-B; src: local('MathJax_Main Bold'), local('MathJax_Main-Bold')}
+@font-face {font-family: MJXc-TeX-main-Bx; src: local('MathJax_Main'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-main-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Main-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-I; src: local('MathJax_Main Italic'), local('MathJax_Main-Italic')}
+@font-face {font-family: MJXc-TeX-main-Ix; src: local('MathJax_Main'); font-style: italic}
+@font-face {font-family: MJXc-TeX-main-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Main-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-R; src: local('MathJax_Main'), local('MathJax_Main-Regular')}
+@font-face {font-family: MJXc-TeX-main-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Main-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-I; src: local('MathJax_Math Italic'), local('MathJax_Math-Italic')}
+@font-face {font-family: MJXc-TeX-math-Ix; src: local('MathJax_Math'); font-style: italic}
+@font-face {font-family: MJXc-TeX-math-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Math-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size1-R; src: local('MathJax_Size1'), local('MathJax_Size1-Regular')}
+@font-face {font-family: MJXc-TeX-size1-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Size1-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size2-R; src: local('MathJax_Size2'), local('MathJax_Size2-Regular')}
+@font-face {font-family: MJXc-TeX-size2-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Size2-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size3-R; src: local('MathJax_Size3'), local('MathJax_Size3-Regular')}
+@font-face {font-family: MJXc-TeX-size3-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Size3-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size4-R; src: local('MathJax_Size4'), local('MathJax_Size4-Regular')}
+@font-face {font-family: MJXc-TeX-size4-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/eot/MathJax_Size4-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf') format('opentype')}
+</style><link rel="preload" href="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/integrator.js" as="script"><script type="text/javascript" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/integrator.js"></script><link rel="preload" href="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/integrator_002.js" as="script"><script type="text/javascript" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/integrator_002.js"></script></head>
+
+  <body><div id="MathJax_Message" style="display: none;"></div>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://semath.info/">SEMATH INFO</a>
+        </div>
+        <div class="navbar-collapse collapse">
+        
+          <ul class="nav navbar-nav navbar-right">
+
+            <li></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+		<div class="search">
+		 	<form id="cse-search-box" action="https://google.com/cse">
+				<input type="hidden" name="cx" value="000618226636851745457:rg1-bmy3zrk">
+				<input type="hidden" name="ie" value="UTF-8">
+				<input type="text" name="q" size="16" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) no-repeat scroll left center; text-indent: 48px;" placeholder="Custom Search">
+				<input type="submit" name="sa" value="Search">
+			<input name="siteurl" type="hidden" value="semath.info/src/inverse-cofactor-ex4.html"><input name="ref" type="hidden" value="www.google.com/"><input name="ss" type="hidden"></form>
+		<script type="text/javascript" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/brand"></script>        
+		</div>
+      </div>
+    </div>
+
+	<!-- +++++ Posts Lists +++++ -->
+
+	
+	<!-- +++++ Second Post +++++ -->
+	<div id="white" style="height: auto !important;">
+	    <div class="container" style="height: auto !important;">
+			<div class="row" style="height: auto !important;">
+				<div class="col-md-6 col-md-offset-3" style="height: auto !important; min-height: 0px !important;">
+
+
+
+
+<h1>How to find the inverse matrix of a 4x4 matrix</h1>	
+<ba>Last updated: Nov. 3, 2017</ba>
+
+<br>
+&nbsp;
+Find the inverse of
+<!--
+$$
+A = \left[
+\begin{array}{cccc}
+a_{11}&a_{12}&a_{13}&a_{14}\\
+a_{21}&a_{22}&a_{23}&a_{24}\\
+a_{31}&a_{32}&a_{33}&a_{34}\\
+a_{41}&a_{42}&a_{43}&a_{44}
+\end{array}
+\right]
+$$
+-->
+<div style="margin : 25px 0px 25px 0px" align="center">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_00.jfif" class="img-responsive center-block" alt="4x4 matrix" width="230px">
+</div>
+, where <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-1-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;|&lt;/mo&gt;&lt;/mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;|&lt;/mo&gt;&lt;/mrow&gt;&lt;mo&gt;&amp;#x2260;&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-1" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-2" class="mjx-mrow"><span id="MJXc-Node-3" class="mjx-texatom"><span id="MJXc-Node-4" class="mjx-mrow"><span id="MJXc-Node-5" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">|</span></span></span></span><span id="MJXc-Node-6" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span><span id="MJXc-Node-7" class="mjx-texatom"><span id="MJXc-Node-8" class="mjx-mrow"><span id="MJXc-Node-9" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">|</span></span></span></span><span id="MJXc-Node-10" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.43em; padding-bottom: 0.553em;">≠</span></span><span id="MJXc-Node-11" class="mjx-mn MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.369em; padding-bottom: 0.369em;">0</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mo stretchy="false">|</mo></mrow><mi>A</mi><mrow class="MJX-TeXAtom-ORD"><mo stretchy="false">|</mo></mrow><mo>≠</mo><mn>0</mn></math></span></span><script type="math/tex" id="MathJax-Element-1">|A|\neq 0</script>.
+
+
+
+
+
+<div class="ad"> 
+<!-- semath responsive -->
+<ins class="adsbygoogle" style="display: inline-block; min-width: 250px; max-width: 336px; width: 336px; height: 280px;" data-ad-client="ca-pub-9645271536709107" data-ad-slot="2313040365" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0px;width:336px;height:280px;" width="336" height="280" frameborder="0"></iframe></ins></ins></ins>
+<script async="" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/adsbygoogle.js"></script>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+
+
+<h3>&nbsp; Answer</h3>
+&nbsp;
+
+There are mainly two ways to obtain the inverse matrix. 
+One is to use Gauss-Jordan elimination and the other is to use the adjugate matrix.
+We employ the latter, here.
+
+<div style="margin : 30px 0px 3px 0px" align="center">
+
+</div>
+				
+
+
+
+
+&nbsp;
+The inverse matrix has the property that 
+it is equal to the product of  the reciprocal of the determinant and the adjugate matrix.
+
+<!--
+$$
+A^{-1} = \frac{1}{|A|} \tilde{A}
+$$
+-->
+
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_01.jfif" class="img-responsive center-block" width="110px">
+</div>
+
+where <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-2-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mover&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;&amp;#x007E;&lt;/mo&gt;&lt;/mover&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-12" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-13" class="mjx-mrow"><span id="MJXc-Node-14" class="mjx-texatom"><span id="MJXc-Node-15" class="mjx-mrow"><span id="MJXc-Node-16" class="mjx-munderover"><span class="mjx-stack"><span class="mjx-over" style="height: 0.153em; padding-bottom: 0.06em; padding-left: 0.264em;"><span id="MJXc-Node-18" class="mjx-mo" style="vertical-align: top;"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.003em; padding-bottom: 0.308em;">~</span></span></span><span class="mjx-op"><span id="MJXc-Node-17" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mover><mi>A</mi><mo stretchy="false">~</mo></mover></mrow></math></span></span><script type="math/tex" id="MathJax-Element-2">\tilde{A}</script> is the adjugate matrix of <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-3-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-19" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-20" class="mjx-mrow"><span id="MJXc-Node-21" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-3">A</script>, and 
+<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-4-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;|&lt;/mo&gt;&lt;/mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;|&lt;/mo&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-22" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-23" class="mjx-mrow"><span id="MJXc-Node-24" class="mjx-texatom"><span id="MJXc-Node-25" class="mjx-mrow"><span id="MJXc-Node-26" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">|</span></span></span></span><span id="MJXc-Node-27" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span><span id="MJXc-Node-28" class="mjx-texatom"><span id="MJXc-Node-29" class="mjx-mrow"><span id="MJXc-Node-30" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">|</span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mo stretchy="false">|</mo></mrow><mi>A</mi><mrow class="MJX-TeXAtom-ORD"><mo stretchy="false">|</mo></mrow></math></span></span><script type="math/tex" id="MathJax-Element-4">|A|</script> is the determinant.
+
+<br>
+&nbsp;
+The determinant of <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-5-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-31" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-32" class="mjx-mrow"><span id="MJXc-Node-33" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-5">A</script> can be obtained by using the cofactor expansion. 
+The cofactor expansion along the first column is
+
+
+<!--
+\begin{eqnarray}
+|A| &=& \left|
+\begin{array}{cccc}
+a_{11}&a_{12}&a_{13}&a_{14}\\
+a_{21}&a_{22}&a_{23}&a_{24}\\
+a_{31}&a_{32}&a_{33}&a_{34}\\
+a_{41}&a_{42}&a_{43}&a_{44}
+\end{array}
+\right|
+\\
+\hspace{1mm}
+\\
+&=& 
+a_{11} \left|
+\begin{array}{ccc}
+a_{22}&a_{23}&a_{24}\\
+a_{32}&a_{33}&a_{34}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right| 
+-a_{21}
+\left|
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{32}&a_{33}&a_{34}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right| 
+\\
+&& 
++a_{31}
+\left|
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{22}&a_{23}&a_{24}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right|
+-
+a_{41}
+\left|
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{22}&a_{23}&a_{24}\\
+a_{32}&a_{33}&a_{34}
+\end{array}
+\right| 
+\end{eqnarray}
+-->
+
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_02.jfif" class="img-responsive center-block" width="430px">
+</div>
+<!--
+となり、
+それぞれの項に現れた 3 次の行列式を<a href="determinant-def.html">サラスの公式</a>によって表すと、
+-->
+The <a href="https://semath.info/src/determinant-three-by-three.html">3x3 determinant</a> in each term is 
+<!--
+\begin{eqnarray}
+\left|
+\begin{array}{ccc}
+a_{22}&a_{23}&a_{24}\\
+a_{32}&a_{33}&a_{34}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right|
+&=&
+a_{22}a_{33}a_{44} + a_{23}a_{34}a_{42} + a_{24}a_{32}a_{43}
+\\
+&&
+-a_{24}a_{33}a_{42} - a_{23}a_{32}a_{44} - a_{22}a_{34}a_{43}
+\end{eqnarray}
+\begin{eqnarray}
+\left|
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{32}&a_{33}&a_{34}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right| 
+&=& a_{12}a_{33}a_{44} + a_{13}a_{34}a_{42} + a_{14}a_{32}a_{43}
+\\
+&&
+- a_{14}a_{33}a_{42} - a_{13}a_{32}a_{44} - a_{12}a_{34}a_{43}
+\end{eqnarray}
+
+\begin{eqnarray}
+\left|
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{22}&a_{23}&a_{24}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right|
+&=& a_{12}a_{23}a_{44} + a_{13}a_{24}a_{42} + a_{14}a_{22}a_{43}
+\\
+&&
+- a_{14}a_{23}a_{42} - a_{13}a_{22}a_{44} - a_{12}a_{24}a_{43}
+\end{eqnarray}
+
+\begin{eqnarray}
+\left|
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{22}&a_{23}&a_{24}\\
+a_{32}&a_{33}&a_{34}
+\end{array}
+\right|
+&=& a_{12}a_{23}a_{34} + a_{13}a_{24}a_{32} + a_{14}a_{22}a_{33}
+\\
+&&
+- a_{14}a_{23}a_{32} - a_{13}a_{22}a_{34} - a_{12}a_{24}a_{33}
+\end{eqnarray}
+-->
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_03.jfif" class="img-responsive center-block" width="450px">
+</div>
+<!--
+となる。
+
+これより、
+行列式は、
+-->
+Therefore, the determinant of <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-6-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-34" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-35" class="mjx-mrow"><span id="MJXc-Node-36" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-6">A</script> is
+
+<!--
+\begin{eqnarray}
+|A| 
+&=& a_{11}(a_{22}a_{33}a_{44} + a_{23}a_{34}a_{42} + a_{24}a_{32}a_{43}
+\\
+&&
+\hspace{10mm}
+-a_{24}a_{33}a_{42} - a_{23}a_{32}a_{44} - a_{22}a_{34}a_{43})
+\\
+&&-a_{21}(a_{12}a_{33}a_{44} + a_{13}a_{34}a_{42} + a_{14}a_{32}a_{43}
+\\
+&&
+\hspace{12mm}
+- a_{14}a_{33}a_{42} - a_{13}a_{32}a_{44} - a_{12}a_{34}a_{43})
+\\
+&&+a_{31}
+(
+ a_{12}a_{23}a_{44} + a_{13}a_{24}a_{42} + a_{14}a_{22}a_{43}
+ \\
+&&
+\hspace{12mm} 
+- a_{14}a_{23}a_{42} - a_{13}a_{22}a_{44} - a_{12}a_{24}a_{43}
+)
+\\
+&&-a_{41}
+(
+a_{12}a_{23}a_{34} + a_{13}a_{24}a_{32} + a_{14}a_{22}a_{33}
+\\
+&&
+\hspace{12mm}
+- a_{14}a_{23}a_{32} - a_{13}a_{22}a_{34} - a_{12}a_{24}a_{33}
+)
+\\
+\hspace{2mm}
+\\
+&=& a_{11}a_{22}a_{33}a_{44} + a_{11}a_{23}a_{34}a_{42} + a_{11}a_{24}a_{32}a_{43}
+\\
+&&
+-a_{11}a_{24}a_{33}a_{42} - a_{11}a_{23}a_{32}a_{44} - a_{11}a_{22}a_{34}a_{43}
+\\
+&&-a_{12}a_{21}a_{33}a_{44} - a_{13}a_{21}a_{34}a_{42} - a_{14}a_{21}a_{32}a_{43}
+\\
+&&
++ a_{14}a_{21}a_{33}a_{42} + a_{13}a_{21}a_{32}a_{44} + a_{12}a_{21}a_{34}a_{43}
+\\
+&&+
+ a_{12}a_{23}a_{31}a_{44} + a_{13}a_{24}a_{31}a_{42} + a_{14}a_{22}a_{31}a_{43}
+\\
+&&
+- a_{14}a_{23}a_{31}a_{42} - a_{13}a_{22}a_{31}a_{44} - a_{12}a_{24}a_{31}a_{43}
+\\
+&&
+- a_{12}a_{23}a_{34}a_{41} - a_{13}a_{24}a_{32}a_{41} - a_{14}a_{22}a_{33}a_{41}
+\\
+&&
++ a_{14}a_{23}a_{32}a_{41} + a_{13}a_{22}a_{34}a_{41} + a_{12}a_{24}a_{33}a_{41}
+\end{eqnarray}
+-->
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_04.jfif" class="img-responsive center-block" width="430px">
+</div>
+
+
+Next, we will find the adjugate matrix, <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-7-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mover&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;&amp;#x007E;&lt;/mo&gt;&lt;/mover&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-37" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-38" class="mjx-mrow"><span id="MJXc-Node-39" class="mjx-texatom"><span id="MJXc-Node-40" class="mjx-mrow"><span id="MJXc-Node-41" class="mjx-munderover"><span class="mjx-stack"><span class="mjx-over" style="height: 0.153em; padding-bottom: 0.06em; padding-left: 0.264em;"><span id="MJXc-Node-43" class="mjx-mo" style="vertical-align: top;"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.003em; padding-bottom: 0.308em;">~</span></span></span><span class="mjx-op"><span id="MJXc-Node-42" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mover><mi>A</mi><mo stretchy="false">~</mo></mover></mrow></math></span></span><script type="math/tex" id="MathJax-Element-7">\tilde{A}</script>.
+The defintion is
+
+<!--
+$$
+\tilde{A}_{ij} = (-1)^{i+j}|M_{ji}|
+\tag{1}
+$$
+-->
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_05.jfif" class="img-responsive center-block" width="275px">
+</div>
+Here, <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-8-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-44" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-45" class="mjx-mrow"><span id="MJXc-Node-46" class="mjx-msubsup"><span class="mjx-base" style="margin-right: -0.081em;"><span id="MJXc-Node-47" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em; padding-right: 0.081em;">M</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-48" class="mjx-texatom" style=""><span id="MJXc-Node-49" class="mjx-mrow"><span id="MJXc-Node-50" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.43em; padding-bottom: 0.491em;">j</span></span><span id="MJXc-Node-51" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.43em; padding-bottom: 0.308em;">i</span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>M</mi><mrow class="MJX-TeXAtom-ORD"><mi>j</mi><mi>i</mi></mrow></msub></math></span></span><script type="math/tex" id="MathJax-Element-8">M_{ji}</script> is a submatrix obtained by removing <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-9-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-52" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-53" class="mjx-mrow"><span id="MJXc-Node-54" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.43em; padding-bottom: 0.491em;">j</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>j</mi></math></span></span><script type="math/tex" id="MathJax-Element-9">j</script>-th row and <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-10-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-55" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-56" class="mjx-mrow"><span id="MJXc-Node-57" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.43em; padding-bottom: 0.308em;">i</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math></span></span><script type="math/tex" id="MathJax-Element-10">i</script>-th column from  <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-11-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-58" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-59" class="mjx-mrow"><span id="MJXc-Node-60" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-11">A</script>,
+
+
+<!--
+\begin{eqnarray}
+M_{11} 
+=  \left[
+\begin{array}{ccc}
+a_{22}&a_{23}&a_{24}\\
+a_{32}&a_{33}&a_{34}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right]\hspace{5mm}
+M_{12} 
+= 
+\left[
+\begin{array}{ccc}
+a_{21}&a_{23}&a_{24}\\
+a_{31}&a_{33}&a_{34}\\
+a_{41}&a_{43}&a_{44}
+\end{array}
+\right]
+\\
+
+\\
+M_{13} 
+= 
+\left[
+\begin{array}{ccc}
+a_{21}&a_{22}&a_{24}\\
+a_{31}&a_{32}&a_{34}\\
+a_{41}&a_{42}&a_{44}
+\end{array}
+\right]
+\hspace{5mm}
+M_{14} 
+= 
+\left[
+\begin{array}{ccc}
+a_{21}&a_{22}&a_{23}\\
+a_{31}&a_{32}&a_{33}\\
+a_{41}&a_{42}&a_{43}
+\end{array}
+\right]
+\\
+\\
+\\
+M_{21} 
+=  \left[
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{32}&a_{33}&a_{34}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right]\hspace{5mm}
+M_{22} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{13}&a_{14}\\
+a_{31}&a_{33}&a_{34}\\
+a_{41}&a_{43}&a_{44}
+\end{array}
+\right]
+\\
+\\
+M_{23} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{12}&a_{14}\\
+a_{31}&a_{32}&a_{34}\\
+a_{41}&a_{42}&a_{44}
+\end{array}
+\right]
+\hspace{5mm}
+M_{24} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{12}&a_{13}\\
+a_{31}&a_{32}&a_{33}\\
+a_{41}&a_{42}&a_{43}
+\end{array}
+\right]
+\\
+\\
+\\
+M_{31} 
+=  \left[
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{22}&a_{23}&a_{24}\\
+a_{42}&a_{43}&a_{44}
+\end{array}
+\right]\hspace{5mm}
+M_{32} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{13}&a_{14}\\
+a_{21}&a_{23}&a_{24}\\
+a_{41}&a_{43}&a_{44}
+\end{array}
+\right]
+\\
+\\
+M_{33} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{12}&a_{14}\\
+a_{21}&a_{22}&a_{24}\\
+a_{41}&a_{42}&a_{44}
+\end{array}
+\right]
+\hspace{5mm}
+M_{34} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{12}&a_{13}\\
+a_{21}&a_{22}&a_{23}\\
+a_{41}&a_{42}&a_{43}
+\end{array}
+\right]
+\\
+\\
+\\
+M_{41} 
+=  \left[
+\begin{array}{ccc}
+a_{12}&a_{13}&a_{14}\\
+a_{22}&a_{23}&a_{24}\\
+a_{32}&a_{33}&a_{34}
+\end{array}
+\right]
+\hspace{5mm}
+M_{42} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{13}&a_{14}\\
+a_{21}&a_{23}&a_{24}\\
+a_{31}&a_{33}&a_{34}
+\end{array}
+\right]
+\\
+\\
+M_{43} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{12}&a_{14}\\
+a_{21}&a_{22}&a_{24}\\
+a_{31}&a_{32}&a_{34}
+\end{array}
+\right]
+\hspace{5mm}
+M_{44} 
+= 
+\left[
+\begin{array}{ccc}
+a_{11}&a_{12}&a_{13}\\
+a_{21}&a_{22}&a_{23}\\
+a_{31}&a_{32}&a_{33}
+\end{array}
+\right]
+\end{eqnarray}
+-->
+
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_06.jfif" class="img-responsive center-block" width="408px">
+</div>
+
+
+These determinants are
+
+<!--
+\begin{eqnarray}
+|M_{11}| 
+&=& a_{22}a_{33}a_{44} + a_{23}a_{34}a_{42} + a_{24}a_{32}a_{43}
+\\
+&&
+- a_{24}a_{33}a_{42} - a_{23}a_{32}a_{44} - a_{22}a_{34}a_{43}
+\\
+
+|M_{12}| 
+&=& a_{21}a_{33}a_{44} + a_{23}a_{34}a_{41} + a_{24}a_{31}a_{43}
+\\
+&&
+- a_{24}a_{33}a_{41} - a_{23}a_{31}a_{44} - a_{21}a_{34}a_{43}
+\\
+
+|M_{13}| 
+&=& a_{21}a_{32}a_{44} + a_{22}a_{34}a_{41} + a_{24}a_{31}a_{42}
+\\
+&&
+- a_{24}a_{32}a_{41} - a_{22}a_{31}a_{44} - a_{21}a_{34}a_{42}
+\\
+
+|M_{14}| 
+&=& a_{21}a_{32}a_{43} + a_{22}a_{33}a_{41} + a_{23}a_{31}a_{42}
+\\
+&&
+- a_{23}a_{32}a_{41} - a_{22}a_{31}a_{43} - a_{21}a_{33}a_{42}
+\end{eqnarray}
+
+\begin{eqnarray}
+|M_{21}| 
+&=& a_{12}a_{33}a_{44} + a_{13}a_{34}a_{42} + a_{14}a_{32}a_{43}
+\\
+&&
+- a_{14}a_{33}a_{42} - a_{13}a_{32}a_{44} - a_{12}a_{34}a_{43}
+\\
+
+|M_{22}| 
+&=& a_{11}a_{33}a_{44} + a_{13}a_{34}a_{41} + a_{14}a_{31}a_{43}
+\\
+&&
+- a_{14}a_{33}a_{41} - a_{13}a_{31}a_{44} - a_{11}a_{34}a_{43}
+\\
+
+|M_{23}| 
+&=& a_{11}a_{32}a_{44} + a_{12}a_{34}a_{41} + a_{14}a_{31}a_{42}
+\\
+&&
+- a_{14}a_{32}a_{41} - a_{12}a_{31}a_{44} - a_{11}a_{34}a_{42}
+\\
+
+|M_{24}| 
+&=& a_{11}a_{32}a_{43} + a_{12}a_{33}a_{41} + a_{13}a_{31}a_{42}
+\\
+&&
+- a_{13}a_{32}a_{41} - a_{12}a_{31}a_{43} - a_{11}a_{33}a_{42}
+\end{eqnarray}
+
+\begin{eqnarray}
+|M_{31}| 
+&=& a_{12}a_{23}a_{44} + a_{13}a_{24}a_{42} + a_{14}a_{22}a_{43}
+\\
+&&
+- a_{14}a_{23}a_{42} - a_{13}a_{22}a_{44} - a_{12}a_{24}a_{43}
+\\
+
+|M_{32}| 
+&=& a_{11}a_{23}a_{44} + a_{13}a_{24}a_{41} + a_{14}a_{21}a_{43}
+\\
+&&
+- a_{14}a_{23}a_{41} - a_{13}a_{21}a_{44} - a_{11}a_{24}a_{43}
+\\
+
+|M_{33}| 
+&=& a_{11}a_{22}a_{44} + a_{12}a_{24}a_{41} + a_{14}a_{21}a_{42}
+\\
+&&
+- a_{14}a_{22}a_{41} - a_{12}a_{21}a_{44} - a_{11}a_{24}a_{42}
+\\
+
+|M_{34}| 
+&=& a_{11}a_{22}a_{43} + a_{12}a_{23}a_{41} + a_{13}a_{21}a_{42}
+\\
+&&
+- a_{13}a_{22}a_{41} - a_{12}a_{21}a_{43} - a_{11}a_{23}a_{42}
+\end{eqnarray}
+
+\begin{eqnarray}
+|M_{41}| 
+&=& a_{12}a_{23}a_{34} + a_{13}a_{24}a_{32} + a_{14}a_{22}a_{33}
+\\
+&&
+- a_{14}a_{23}a_{32} - a_{13}a_{22}a_{34} - a_{12}a_{24}a_{33}
+\\
+
+|M_{42}| 
+&=& a_{11}a_{23}a_{34} + a_{13}a_{24}a_{31} + a_{14}a_{21}a_{33}
+\\
+&&
+- a_{14}a_{23}a_{31} - a_{13}a_{21}a_{34} - a_{11}a_{24}a_{33}
+\\
+
+|M_{43}| 
+&=& a_{11}a_{22}a_{34} + a_{12}a_{24}a_{31} + a_{14}a_{21}a_{32}
+\\
+&&
+- a_{14}a_{22}a_{31} - a_{12}a_{21}a_{34} - a_{11}a_{24}a_{32}
+\\
+
+|M_{44}| 
+&=& a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}
+\\
+&&
+- a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} - a_{11}a_{23}a_{32}
+\end{eqnarray}
+-->
+
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_07.jfif" class="img-responsive center-block" width="390px">
+</div>
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_08.jfif" class="img-responsive center-block" width="390px">
+</div>
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_09.jfif" class="img-responsive center-block" width="390px">
+</div>
+<div style="margin : 30px 0px 35px 0px" align="center">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_10.jfif" class="img-responsive center-block" width="390px">
+</div>
+
+
+
+From <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-12-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-61" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-62" class="mjx-mrow"><span id="MJXc-Node-63" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">(</span></span><span id="MJXc-Node-64" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.369em; padding-bottom: 0.369em;">1</span></span><span id="MJXc-Node-65" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-12">(1)</script>, the elements of <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-13-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mover&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;&amp;#x007E;&lt;/mo&gt;&lt;/mover&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-66" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-67" class="mjx-mrow"><span id="MJXc-Node-68" class="mjx-texatom"><span id="MJXc-Node-69" class="mjx-mrow"><span id="MJXc-Node-70" class="mjx-munderover"><span class="mjx-stack"><span class="mjx-over" style="height: 0.153em; padding-bottom: 0.06em; padding-left: 0.264em;"><span id="MJXc-Node-72" class="mjx-mo" style="vertical-align: top;"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.003em; padding-bottom: 0.308em;">~</span></span></span><span class="mjx-op"><span id="MJXc-Node-71" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mover><mi>A</mi><mo stretchy="false">~</mo></mover></mrow></math></span></span><script type="math/tex" id="MathJax-Element-13">\tilde{A}</script> are
+<!--
+\begin{eqnarray}
+\tilde{A}_{11} 
+&=& a_{22}a_{33}a_{44} + a_{23}a_{34}a_{42} + a_{24}a_{32}a_{43}
+\\
+&&
+- a_{24}a_{33}a_{42} - a_{23}a_{32}a_{44} - a_{22}a_{34}a_{43}
+\\
+
+\tilde{A}_{12} 
+&=& -a_{12}a_{33}a_{44} - a_{13}a_{34}a_{42} - a_{14}a_{32}a_{43}
+\\
+&&
++ a_{14}a_{33}a_{42} + a_{13}a_{32}a_{44} + a_{12}a_{34}a_{43}
+\\
+
+\tilde{A}_{13} 
+&=& a_{12}a_{23}a_{44} + a_{13}a_{24}a_{42} + a_{14}a_{22}a_{43}
+\\
+&&
+- a_{14}a_{23}a_{42} - a_{13}a_{22}a_{44} - a_{12}a_{24}a_{43}
+\\
+
+\tilde{A}_{14} 
+&=& -a_{12}a_{23}a_{34} - a_{13}a_{24}a_{32} - a_{14}a_{22}a_{33}
+\\
+&&
++ a_{14}a_{23}a_{32} + a_{13}a_{22}a_{34} + a_{12}a_{24}a_{33}
+\end{eqnarray}
+
+\begin{eqnarray}
+\tilde{A}_{21}  
+&=& -a_{21}a_{33}a_{44} - a_{23}a_{34}a_{41} - a_{24}a_{31}a_{43}
+\\
+&&
++ a_{24}a_{33}a_{41} + a_{23}a_{31}a_{44} + a_{21}a_{34}a_{43}
+\\
+\
+\tilde{A}_{22}
+&=& a_{11}a_{33}a_{44} + a_{13}a_{34}a_{41} + a_{14}a_{31}a_{43}
+\\
+&&
+- a_{14}a_{33}a_{41} - a_{13}a_{31}a_{44} - a_{11}a_{34}a_{43}
+\\
+
+\tilde{A}_{23}
+&=& -a_{11}a_{23}a_{44} - a_{13}a_{24}a_{41} - a_{14}a_{21}a_{43}
+\\
+&&
++ a_{14}a_{23}a_{41} + a_{13}a_{21}a_{44} + a_{11}a_{24}a_{43}
+\\
+
+\tilde{A}_{24}  
+&=& a_{11}a_{23}a_{34} + a_{13}a_{24}a_{31} + a_{14}a_{21}a_{33}
+\\
+&&
+- a_{14}a_{23}a_{31} - a_{13}a_{21}a_{34} - a_{11}a_{24}a_{33}
+\end{eqnarray}
+
+
+\begin{eqnarray}
+\tilde{A}_{31} 
+&=& a_{21}a_{32}a_{44} + a_{22}a_{34}a_{41} + a_{24}a_{31}a_{42}
+\\
+&&
+- a_{24}a_{32}a_{41} - a_{22}a_{31}a_{44} - a_{21}a_{34}a_{42}
+\\
+
+\tilde{A}_{32} 
+&=& -a_{11}a_{32}a_{44} - a_{12}a_{34}a_{41} - a_{14}a_{31}a_{42}
+\\
+&&
++ a_{14}a_{32}a_{41} + a_{12}a_{31}a_{44} + a_{11}a_{34}a_{42}
+\\
+
+\tilde{A}_{33}
+&=& a_{11}a_{22}a_{44} + a_{12}a_{24}a_{41} + a_{14}a_{21}a_{42}
+\\
+&&
+- a_{14}a_{22}a_{41} - a_{12}a_{21}a_{44} - a_{11}a_{24}a_{42}
+\\
+
+\tilde{A}_{34}
+&=& -a_{11}a_{22}a_{34} - a_{12}a_{24}a_{31} - a_{14}a_{21}a_{32}
+\\
+&&
++ a_{14}a_{22}a_{31} + a_{12}a_{21}a_{34} + a_{11}a_{24}a_{32}
+\end{eqnarray}
+\begin{eqnarray}
+\tilde{A}_{41} 
+&=& -a_{21}a_{32}a_{43} - a_{22}a_{33}a_{41} - a_{23}a_{31}a_{42}
+\\
+&&
++ a_{23}a_{32}a_{41} + a_{22}a_{31}a_{43} + a_{21}a_{33}a_{42}
+\\
+
+\tilde{A}_{42} 
+&=& a_{11}a_{32}a_{43} + a_{12}a_{33}a_{41} + a_{13}a_{31}a_{42}
+\\
+&&
+- a_{13}a_{32}a_{41} - a_{12}a_{31}a_{43} - a_{11}a_{33}a_{42}
+\\
+
+\tilde{A}_{43}
+&=& -a_{11}a_{22}a_{43} - a_{12}a_{23}a_{41} - a_{13}a_{21}a_{42}
+\\
+&&
++ a_{13}a_{22}a_{41} + a_{12}a_{21}a_{43} + a_{11}a_{23}a_{42}
+\\
+
+\tilde{A}_{44} 
+&=& a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}
+\\
+&&
+- a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} - a_{11}a_{23}a_{32}
+\end{eqnarray}
+-->
+<div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed"><ins style="display: block; margin: 10px auto; background-color: transparent; height: 0px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9645271536709107" data-adsbygoogle-status="done"><ins id="aswift_4_expand" style="display: inline-table; border: medium none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 555px; background-color: transparent;"><ins id="aswift_4_anchor" style="display: block; border: medium none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 555px; background-color: transparent; overflow: hidden; opacity: 0;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left: 0px; position: absolute; top: 0px; border: 0px none; width: 555px; height: 280px; overflow: visible;" width="555" height="280" frameborder="0"></iframe></ins></ins></ins></div><div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_11.jfif" class="img-responsive center-block" width="380px">
+</div>
+
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_12.jfif" class="img-responsive center-block" width="380px">
+</div>
+
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_13.jfif" class="img-responsive center-block" width="380px">
+</div>
+
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_14.jfif" class="img-responsive center-block" width="380px">
+</div>
+
+<br>
+&nbsp;
+We have found <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-14-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;|&lt;/mo&gt;&lt;/mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;|&lt;/mo&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-73" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-74" class="mjx-mrow"><span id="MJXc-Node-75" class="mjx-texatom"><span id="MJXc-Node-76" class="mjx-mrow"><span id="MJXc-Node-77" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">|</span></span></span></span><span id="MJXc-Node-78" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span><span id="MJXc-Node-79" class="mjx-texatom"><span id="MJXc-Node-80" class="mjx-mrow"><span id="MJXc-Node-81" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">|</span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mo stretchy="false">|</mo></mrow><mi>A</mi><mrow class="MJX-TeXAtom-ORD"><mo stretchy="false">|</mo></mrow></math></span></span><script type="math/tex" id="MathJax-Element-14">|A|</script> and <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-15-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mover&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;&amp;#x007E;&lt;/mo&gt;&lt;/mover&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-82" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-83" class="mjx-mrow"><span id="MJXc-Node-84" class="mjx-texatom"><span id="MJXc-Node-85" class="mjx-mrow"><span id="MJXc-Node-86" class="mjx-munderover"><span class="mjx-stack"><span class="mjx-over" style="height: 0.153em; padding-bottom: 0.06em; padding-left: 0.264em;"><span id="MJXc-Node-88" class="mjx-mo" style="vertical-align: top;"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.003em; padding-bottom: 0.308em;">~</span></span></span><span class="mjx-op"><span id="MJXc-Node-87" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mover><mi>A</mi><mo stretchy="false">~</mo></mover></mrow></math></span></span><script type="math/tex" id="MathJax-Element-15">\tilde{A}</script>. Therefore, substituting them into 
+<!--
+$$
+A^{-1} = \frac{1}{|A|} \tilde{A}
+$$
+-->
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_15.jfif" class="img-responsive center-block" width="120px">
+</div>
+yields the inverse matrix.
+
+
+
+
+<div style="margin : 45px 0px 15px 0px" align="center"> 
+<script async="" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/adsbygoogle.js"></script>
+<!-- semath300x250_Middle -->
+<ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 0px;" data-ad-client="ca-pub-9645271536709107" data-ad-slot="4171569478" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display: inline-table; border: medium none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 300px; background-color: transparent;"><ins id="aswift_1_anchor" style="display: block; border: medium none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 300px; background-color: transparent; overflow: hidden; opacity: 0;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0px;width:300px;height:250px;" width="300" height="250" frameborder="0"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<b>
+<font color="blue"> 
+Example
+</font>
+</b>
+<br>
+&nbsp;
+Find the inverse of
+<!--
+$$
+A = \left[
+\begin{array}{cccc}
+1 & 1 & 1  & -1\\
+1 & 1 & -1 & 1 \\
+1 & -1 &1  & 1 \\
+-1& 1 &1&1
+\end{array}
+\right]
+$$
+-->
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_16.jfif" class="img-responsive center-block" width="250px">
+</div>
+in the same way as above method.
+<br>
+&nbsp;
+The determinant of <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-16-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-89" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-90" class="mjx-mrow"><span id="MJXc-Node-91" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-16">A</script> is
+<!--
+$$
+|A| = -16
+$$
+-->
+<div class="eq">
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_17.jfif" class="img-responsive center-block" width="92px">
+</div>
+(<a href="https://semath.info/src/determinant-four-by-four.html">see "determinant of a 4x4 matrix"</a>)
+<br>
+&nbsp;
+The submatrices of <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-17-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-92" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-93" class="mjx-mrow"><span id="MJXc-Node-94" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-17">A</script> are
+
+
+<!--
+\begin{eqnarray}
+\begin{array}{cc}
+M_{11}
+=  \left[
+\begin{array}{ccc}
+1 & -1 & 1 \\
+-1&  1 & 1 \\
+1 &  1 & 1
+\end{array}
+\right],&
+M_{12} 
+= 
+\left[
+\begin{array}{ccc}
+1  &  -1 & 1 \\
+1  & 1   & 1 \\
+-1 & 1 & 1
+\end{array}
+\right],
+\\
+M_{13}
+= 
+\left[
+\begin{array}{ccc}
+1 & 1  & 1 \\
+1 & -1 & 1 \\
+-1& 1  & 1
+\end{array}
+\right],
+&
+M_{14} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1  & -1 \\
+1 & -1 & 1 \\
+-1& 1  & 1
+\end{array}
+\right],
+
+\\
+\\
+M_{21} 
+=  \left[
+\begin{array}{ccc}
+1 & 1 & -1 \\
+-1& 1 & 1 \\
+1 & 1 & 1
+\end{array}
+\right],
+&
+M_{22} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1 & -1 \\
+1 & 1 & 1\\
+-1& 1 & 1
+\end{array}
+\right],
+\\
+\hspace{1mm}
+M_{23} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & -1& 1\\
+-1& 1& 1
+\end{array}
+\right],
+&
+M_{24} 
+= 
+\left[
+\begin{array}{ccc}
+1   & 1  & 1\\
+1   & -1 & 1\\
+-1 & 1  & 1
+\end{array}
+\right],
+
+\\
+\\
+M_{31} 
+=  \left[
+\begin{array}{ccc}
+1 & 1 & -1 \\
+1 &-1 & 1\\
+1 & 1 & 1
+\end{array}
+\right],
+&
+M_{32} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & -1& 1 \\
+-1&1&1
+\end{array}
+\right],
+\\
+M_{33} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & 1 & 1 \\
+-1& 1 & 1
+\end{array}
+\right],
+&
+M_{34} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1 & 1\\
+1 & 1 & -1\\
+-1& 1 & 1
+\end{array}
+\right],
+\\
+\\
+M_{41} 
+=  \left[
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & -1& 1 \\
+-1& 1& 1
+\end{array}
+\right],
+&
+M_{42} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1& -1\\
+1 & -1& 1\\
+1 & 1& 1
+\end{array}
+\right],
+\\
+M_{43} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 &1 & 1\\
+1 & -1& 1
+\end{array}
+\right],
+&
+M_{44} 
+= 
+\left[
+\begin{array}{ccc}
+1 & 1 & 1\\
+1 & 1 &-1\\
+1& -1& 1
+\end{array}
+\right]
+\end{array}
+\end{eqnarray}
+-->
+
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_18.jfif" class="img-responsive center-block" width="430px">     
+</div>
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_19.jfif" class="img-responsive center-block" width="430px">     
+</div>
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_20.jfif" class="img-responsive center-block" width="430px">     
+</div>
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_21.jfif" class="img-responsive center-block" width="430px">     
+</div>
+These determinants are
+
+
+
+<!--
+\begin{eqnarray}
+\begin{array}{l}
+|M_{11}| 
+= \left|
+\begin{array}{ccc}
+1 & -1 & 1 \\
+-1&  1 & 1 \\
+1 &  1 & 1
+\end{array}
+\right| = -4,
+\\
+|M_{12}| 
+= \left|
+\begin{array}{ccc}
+1  &  -1 & 1 \\
+1  & 1   & 1 \\
+-1 & 1 & 1
+\end{array}
+\right| 
+= 4,
+\\
+|M_{13}| 
+= \left|
+\begin{array}{ccc}
+1 & 1  & 1 \\
+1 & -1 & 1 \\
+-1& 1  & 1
+\end{array}
+\right| = -4,
+\\
+
+|M_{14}| 
+= \left|
+\begin{array}{ccc}
+1 & 1  & -1 \\
+1 & -1 & 1 \\
+-1& 1  & 1
+\end{array}
+\right| = -4,
+
+\\
+\\
+|M_{21}| 
+= \left|
+\begin{array}{ccc}
+1 & 1 & -1 \\
+-1& 1 & 1 \\
+1 & 1 & 1
+\end{array}
+\right| = 4,
+\\
+|M_{22}| 
+=
+\left|
+\begin{array}{ccc}
+1 & 1 & -1 \\
+1 & 1 & 1\\
+-1& 1 & 1
+\end{array}
+\right| = -4,
+\\
+
+|M_{23}| 
+= \left|
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & -1& 1\\
+-1& 1& 1
+\end{array}
+\right| = -4,
+\\
+|M_{24}| 
+=
+\left|
+\begin{array}{ccc}
+1   & 1  & 1\\
+1   & -1 & 1\\
+-1 & 1  & 1
+\end{array}
+\right| = -4,
+\\
+
+\\
+|M_{31}| 
+=\left|
+\begin{array}{ccc}
+1 & 1 & -1 \\
+1 &-1 & 1\\
+1 & 1 & 1
+\end{array}
+\right| = -4,
+\\
+|M_{32}| 
+= \left|
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & -1& 1 \\
+-1&1&1
+\end{array}
+\right| = -4,
+\\
+|M_{33}| 
+=\left|
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & 1 & 1 \\
+-1& 1 & 1
+\end{array}
+\right| = -4,
+\\
+|M_{34}| 
+= \left|
+\begin{array}{ccc}
+1 & 1 & 1\\
+1 & 1 & -1\\
+-1& 1 & 1
+\end{array}
+\right| = 4,
+\\
+\hspace{1mm}
+\\
+|M_{41}| 
+=\left|
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 & -1& 1 \\
+-1& 1& 1
+\end{array}
+\right| = -4,
+\\
+|M_{42}| 
+= \left|
+\begin{array}{ccc}
+1 & 1& -1\\
+1 & -1& 1\\
+1 & 1& 1
+\end{array}
+\right| = -4,
+\\
+|M_{43}| 
+= \left|
+\begin{array}{ccc}
+1 & 1 & -1\\
+1 &1 & 1\\
+1 & -1& 1
+\end{array}
+\right| = 4,
+\\
+|M_{44}| 
+=
+\left|
+\begin{array}{ccc}
+1 & 1 & 1\\
+1 & 1 &-1\\
+1& -1& 1
+\end{array}
+\right| = -4
+\end{array}
+\end{eqnarray}
+-->
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_22.jfif" class="img-responsive center-block" width="260px">     
+</div>
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_23.jfif" class="img-responsive center-block" width="260px">     
+</div>
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_24.jfif" class="img-responsive center-block" width="260px">     
+</div>
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_25.jfif" class="img-responsive center-block" width="260px">     
+</div>
+By definition <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-18-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-95" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-96" class="mjx-mrow"><span id="MJXc-Node-97" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">(</span></span><span id="MJXc-Node-98" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.369em; padding-bottom: 0.369em;">1</span></span><span id="MJXc-Node-99" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.491em; padding-bottom: 0.614em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-18">(1)</script>,
+each elements of the adjugate matrix are  
+
+
+<!--
+\begin{eqnarray}
+\tilde{A}_{11} &=& (-1)^{1+1}|M_{11}| = |M_{11}| = -4
+\\
+\tilde{A}_{12} &=& (-1)^{1+2}|M_{21}| = -|M_{21}| = -4
+\\
+\tilde{A}_{13} &=& (-1)^{1+3}|M_{31}| = |M_{31}| = -4
+\\
+\tilde{A}_{14} &=& (-1)^{1+4}|M_{41}| = -|M_{41}| = 4
+\\
+\hspace{1mm}
+\\
+\tilde{A}_{21} &=& (-1)^{2+1}|M_{12}| = -|M_{12}| = -4
+\\
+\tilde{A}_{22} &=& (-1)^{2+2}|M_{22}| = |M_{22}| = -4
+\\
+\tilde{A}_{23} &=& (-1)^{2+3}|M_{32}| = -|M_{32}| = 4
+\\
+\tilde{A}_{24} &=& (-1)^{2+4}|M_{42}| = |M_{42}| = -4
+\\
+\hspace{1mm}
+\\
+\tilde{A}_{31} &=& (-1)^{3+1}|M_{13}| = |M_{13}| = -4
+\\
+\tilde{A}_{32} &=& (-1)^{3+2}|M_{23}| = -|M_{23}| = 4
+\\
+\tilde{A}_{33} &=& (-1)^{3+3}|M_{33}| = |M_{33}| = -4
+\\
+\tilde{A}_{34} &=& (-1)^{3+4}|M_{43}| = -|M_{43}| = -4
+\\
+\hspace{1mm}
+\\
+\tilde{A}_{41} &=& (-1)^{4+1}|M_{14}| = -|M_{14}| = 4
+\\
+\tilde{A}_{42} &=& (-1)^{4+2}|M_{24}| = |M_{24}| = -4
+\\
+\tilde{A}_{43} &=& (-1)^{4+3}|M_{34}| = -|M_{34}| = -4
+\\
+\tilde{A}_{44} &=& (-1)^{4+4}|M_{44}| = |M_{44}| = -4
+\end{eqnarray}
+-->
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_27.jfif" class="img-responsive center-block" width="320px">
+</div>
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_28.jfif" class="img-responsive center-block" width="320px">
+</div>
+
+<br>
+&nbsp;
+Therefore,
+<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-19-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msup&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-100" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-101" class="mjx-mrow"><span id="MJXc-Node-102" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-103" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.491em; padding-bottom: 0.308em;">A</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.513em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-104" class="mjx-texatom" style=""><span id="MJXc-Node-105" class="mjx-mrow"><span id="MJXc-Node-106" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.308em; padding-bottom: 0.43em;">−</span></span><span id="MJXc-Node-107" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.369em; padding-bottom: 0.369em;">1</span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>A</mi><mrow class="MJX-TeXAtom-ORD"><mo>−</mo><mn>1</mn></mrow></msup></math></span></span><script type="math/tex" id="MathJax-Element-19">A^{-1}</script> is
+<!--
+<br/>
+<br/>
+\begin{eqnarray}
+A^{-1} 
+&=& \frac{1}{|A|} \tilde{A} 
+\\
+&=&
+-\frac{1}{16}
+\left[
+\begin{array}{cccc}
+-4&-4&-4&4\\
+-4&-4&4&-4\\
+-4&4&-4&-4\\
+4&-4&-4&-4
+\end{array}
+\right]
+\\
+\\
+&=&
+\left[
+\begin{array}{cccc}
+1/4&1/4&1/4&-1/4\\
+1/4&1/4&-1/4&1/4\\
+1/4&-1/4&1/4&1/4\\
+-1/4&1/4&1/4&1/4
+\end{array}
+\right]
+\end{eqnarray}
+<br/>
+<br/>
+-->
+<div class="eq"> 
+<img src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/inverse_cofactor_ex4_29.jfif" class="img-responsive center-block" width="360px">
+</div>
+
+
+
+
+<br>
+<b><font size="4" color="blue"> 
+Calculator
+</font></b>
+
+<br>
+&nbsp;
+<!--
+
+-->
+Enter a 4x4 matrix and press "execute button". 
+The inverse matrix is displayed.
+
+
+<div style="margin : 30px 0px 5px 0px" align="left">
+ Matrix
+ </div>
+<div style="margin : 5px 0px 30px 0px" align="center">
+ <form action="#" name="calForm">
+
+
+ 			<table border="1">
+				<tbody><tr>
+					<td></td>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><input type="text" name="m11" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m12" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m13" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m14" size="3" style="text-align:right;"></td>
+				</tr>
+
+				<tr>
+					<td>2</td>
+					<td><input type="text" name="m21" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m22" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m23" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m24" size="3" style="text-align:right;"></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td><input type="text" name="m31" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m32" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m33" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m34" size="3" style="text-align:right;"></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td><input type="text" name="m41" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m42" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m43" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="m44" size="3" style="text-align:right;"></td>
+				</tr>
+			</tbody></table>
+ </form></div>
+
+<div style="margin : 20px 0px 20px 0px" align="center">
+<input type="button" name="keisan" value="Execute" onclick="Cofactor();">
+</div>
+ 
+ 
+ <div style="margin : 30px 0px 5px 0px" align="left">
+Inverse matrix
+</div>
+<div style="margin : 5px 0px 30px 0px" align="center">
+			<table border="1">
+				<tbody><tr>
+					<td></td>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+				</tr>
+				<tr>
+				</tr><tr>
+					<td>1</td>
+					<td><input type="text" name="ans11" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans12" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans13" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans14" size="3" style="text-align:right;"></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td><input type="text" name="ans21" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans22" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans23" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans24" size="3" style="text-align:right;"></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td><input type="text" name="ans31" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans32" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans33" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans34" size="3" style="text-align:right;"></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td><input type="text" name="ans41" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans42" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans43" size="3" style="text-align:right;"></td>
+					<td><input type="text" name="ans44" size="3" style="text-align:right;"></td>
+				</tr>
+			</tbody></table>
+</div>
+
+
+
+ 
+
+
+	
+
+
+
+<div class="adbot"> 
+<!-- semath responsive bottom -->
+<ins class="adsbygoogle" style="display: inline-block; min-width: 250px; max-width: 336px; width: 336px; height: 0px;" data-ad-client="ca-pub-9645271536709107" data-ad-slot="9616815316" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display: inline-table; border: medium none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 336px; background-color: transparent;"><ins id="aswift_2_anchor" style="display: block; border: medium none; height: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 336px; background-color: transparent; overflow: hidden; opacity: 0;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0px;width:336px;height:280px;" width="336" height="280" frameborder="0"></iframe></ins></ins></ins>
+<script async="" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/adsbygoogle.js"></script>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+				</div>
+
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /grey -->
+	
+	
+	
+	<!-- +++++ Footer Section +++++ -->
+	
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4" style="margin : 0px 0px 30px 0px">
+					<h4>Links</h4>
+					
+						<a href="https://semath.info/src/inverse-cofactor-ex3.html"><b>Inverse of a 3x3 matrix</b></a><br>
+						<a href="https://semath.info/src/cofactor-matrix.html"><b>Cofactor matrix</b></a>
+
+					
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>Information</h4>
+						<a href="https://semath.info/">Top page</a>
+						<br>
+						<a href="https://semath.info/src/history.html">History</a>
+						<br>
+						<a href="https://semath.info/src/disclaimer.html">Disclaimer</a>
+						<br>
+						<a href="#">Top of this page</a>
+						<br>
+				</div><!-- /col-lg-4 -->
+			
+			</div>
+
+		</div>
+		
+
+<div style="margin : 20px 0px 0px 0px" align="center">
+<font color="gray">
+ © 2017 SEMATH INFO
+</font>
+</div>
+	</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/bootstrap.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58119633-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+<ins class="adsbygoogle adsbygoogle-noablate" style="display: none !important;" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_3_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0px;width:0px;height:0px;" frameborder="0"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_3748567726658" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body><iframe id="google_esf" name="google_esf" src="How%20to%20find%20the%20inverse%20matrix%20of%20a%204x4%20matrix%20%C2%A0%20-%20SEMATH%20INFO%20-_files/zrt_lookup.html" style="display: none;" data-ad-client="ca-pub-9645271536709107"></iframe></html>
