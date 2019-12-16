@@ -31,21 +31,24 @@ void mapcubeTextureMapping();
 float tx, ty, tz,trot;
 int g_nSkySize = 500;
 
-vec calculate_vec(vec input, GLfloat mat[]);
-GLuint texname[2];
-GLuint g_nCubeTex;
-
 struct vec {
 	float x;
 	float y;
 	float z;
 };
 
+vec calculate_vec(vec input, GLfloat mat[]);
+vec find_vec(int s,int count);
+GLuint texname[2];
+GLuint g_nCubeTex;
+
+
+
 struct block {
 	int name;
 	int color;
 	GLfloat matrix[16];
-	vec* crash;
+	vec crash[2];
 };
 
 GLfloat temp_matrix[16];
@@ -70,19 +73,84 @@ int position = 0;
 vec calculate_vec(vec input, GLfloat mat[]) {
 	vec temp;
 
-	temp.x = input.x * mat[0] + input.y * mat[1]
-		+ input.z * mat[2] + 1* mat[3];
-	temp.y = input.x * mat[4] + input.y * mat[5]
-		+ input.z * mat[6] + 1* mat[7];
-	temp.z = input.x * mat[8] + input.y * mat[9]
-		+ input.z * mat[10] + 1* mat[11];
-	float one= input.x * mat[12] + input.y * mat[13]
-		+ input.z * mat[14] + 1* mat[15];
+	temp.x = input.x * mat[0] + input.y * mat[4]
+		+ input.z * mat[8] + 1* mat[12];
+	temp.y = input.x * mat[1] + input.y * mat[5]
+		+ input.z * mat[9] + 1* mat[13];
+	temp.z = input.x * mat[2] + input.y * mat[6]
+		+ input.z * mat[10] + 1* mat[14];
+	float one= input.x * mat[3] + input.y * mat[7]
+		+ input.z * mat[11] + 1* mat[15];
 	temp.x = temp.x / one;
 	temp.y = temp.y / one;
 	temp.z = temp.z / one;
 
 	return temp;
+}
+
+vec find_vec(int s, int count) {
+	vec temp;
+	if (count == 1) {
+		switch (s) {
+		case '1':
+			temp.x = 0.5;
+			temp.y = 1;
+			temp.z = -0.5;
+			break;
+		case '2':
+			temp.x = 1;
+			temp.y = 1;
+			temp.z = -0.5;
+			break;
+		case '3':
+			temp.x = 1.5;
+			temp.y = 1;
+			temp.z = -0.5;
+			break;
+		case '4':
+		case '6':
+			temp.x = 1;
+			temp.y = 1;
+			temp.z = -1;
+			break;
+		case '5':
+			temp.x = 0.5;
+			temp.y = 2;
+			temp.z = -0.5;
+			break;
+		}
+
+	}
+	else {
+		switch (s) {
+		case '1':
+		case '5':
+			temp.x = -0.5;
+			temp.y = 0;
+			temp.z =0.5;
+			break;
+		case '2':
+			temp.x = -1;
+			temp.y = 0;
+			temp.z = 0.5;
+			break;
+		case '3':
+			temp.x = -1.5;
+			temp.y = 0;
+			temp.z = -0.5;
+			break;
+		case '4':
+		case '6':
+			temp.x = -1;
+			temp.y = 0;
+			temp.z = 1;
+			break;
+
+		
+		}
+
+	}
+		return temp;
 }
 
 
@@ -369,17 +437,17 @@ void keyboard(unsigned char key, int x, int y) {
 		r = 7;
 	}
 	if (key == 'a')
-		tx-=1;
+		tx-=0.2;
 	if (key == 's')
-		tz+= 1;
+		tz+= 0.2;
 	if (key == 'w')
-		tz-= 1;
+		tz-= 0.2;
 	if (key == 'd')
-		tx+= 1;
+		tx+= 0.2;
 	if (key == 'z')
-		ty += 1;
+		ty += 0.2;
 	if (key == 'c')
-		ty -= 1;
+		ty -= 0.2;
 	if (key == 'q')
 		if (trot <360)
 			trot += 90;
@@ -389,6 +457,14 @@ void keyboard(unsigned char key, int x, int y) {
 		block temp = { s,c};
 		for (int i = 0; i < 16; i++)
 			temp.matrix[i] = temp_matrix[i];
+		
+		vec tempvec,tempvec2;
+		for (int i = 0; i < 2; i++) {
+			tempvec = find_vec(s, i);					//바운딩 박스 좌표 계산 및 저장
+			tempvec2 = calculate_vec(tempvec, temp_matrix);
+			temp.crash[i] = tempvec2;
+		}
+
 		a.push_back(temp);
 		tx = ty = tz = trot = 0;
 	}
@@ -402,6 +478,9 @@ void keyboard(unsigned char key, int x, int y) {
 			outFile << a.at(i).name<<' '<<a.at(i).color;
 			for (int j = 0; j < 16; j++)
 				outFile<<' ' << a.at(i).matrix[j];
+			for (int j = 0; j < 2; j++)
+				outFile << ' ' << a.at(i).crash[j].x << ' ' << a.at(i).crash[j].y
+				<< ' ' << a.at(i).crash[j].z;
 			outFile << endl;
 		}
 		outFile.close();
@@ -415,6 +494,9 @@ void keyboard(unsigned char key, int x, int y) {
 			inFile >> k.name >> k.color;
 			for (int j = 0; j < 16; j++)
 				inFile>>k.matrix[j];
+			for (int j = 0; j < 2; j++)
+				inFile>> k.crash[j].x >>k.crash[j].y>>
+				k.crash[j].z;
 			a.push_back(k);
 		}
 		inFile.close();
