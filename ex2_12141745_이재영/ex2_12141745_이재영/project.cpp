@@ -21,47 +21,33 @@ float pi = 3.14;
 float se = 60 * pi / 180;
 float fi = 60 * pi / 180;
 float r = 7;
-void resize(int width, int height);
-void draw_axis(void);
-void arrow(int key, int x, int y);
-void cubeTextureMapping();
-void mapcubeTextureMapping();
 float tx, ty, tz, trot;
 int g_nSkySize = 500;
-
 struct vec {
 	float x;
 	float y;
 	float z;
 };
-
 GLuint texname[2];
 GLuint g_nCubeTex;
-
 struct block {
 	int name;
 	int color;
 	GLfloat matrix[16];
 	vec crash[2];
 };
-
 GLfloat temp_matrix[16];
 vector<block> a;
-
 float co[9][3] = { {0,0,0}, {1.0f,0.0f,0.0f}, {0.0f,1.0f,0.0f}
 				   , {0.0f,0.0f,1.0f}, {1.0f,1.0f,0.0f}, {1.0f,0.0f,1.0f}
 			   , {0.0f,1.0f,1.0f}, {1.0f,1.0f,1.0f}, {0.0f,0.0f,0.0f} };
-
 GLfloat ambientLight[] = { 0.4f,0.4f,0.4f,1.0f };
 GLfloat diffuseLight[] = { 1.0f,1.0f,1.0f,1.0f };
 GLfloat specularLight[] = { 1.0f,1.0f,1.0f,1.0f };
-
 GLfloat ambient_sun[] = { 0.2f,0.2f,0.2f,1.0f };
 GLfloat diffuse_sun[] = { 1.0f,1.0f,1.0f,1.0f };
 GLfloat specular_sun[] = { 1.0f,1.0f,1.0f,1.0f };
-
 GLfloat light_position[] = { 0.0f,0.0f,0.0f,1.0f };
-
 int position = 0;
 
 
@@ -72,9 +58,18 @@ bool check_crash();
 void mouse(int button, int state, int x, int y);
 void motion(int x, int y);
 void keyboard(unsigned char key, int x, int y);
-
-
 bool check_crash();
+void resize(int width, int height);
+void draw_axis(void);
+void arrow(int key, int x, int y);
+void cubeTextureMapping();
+void mapcubeTextureMapping();
+void draw_map();
+void DrawLego(int index, int color);
+float inner_product(vec a, vec b);
+void sub_menu_function(int option);
+void main_menu_function(int option);
+
 
 void init() {
 	/*화면의 기본색으로 black 설정 */
@@ -262,8 +257,6 @@ void draw_map() {
 	glPopMatrix();
 }
 
-
-
 void draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -313,8 +306,6 @@ float inner_product(vec a, vec b) {
 	temp = a.x*b.x + a.y*b.y + a.z*b.z;
 	return temp;
 }
-
-
 
 void sub_menu_function(int option) {
 	printf("Submenu %d has been selected\n", option);
@@ -547,7 +538,7 @@ vec find_vec(int s, int count) {
 		case '3':
 			temp.x = -1.5;
 			temp.y = 0;
-			temp.z = -0.5;
+			temp.z = 0.5;
 			break;
 		case '4':
 		case '6':
