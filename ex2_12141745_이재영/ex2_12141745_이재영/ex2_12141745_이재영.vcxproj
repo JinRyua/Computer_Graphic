@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmpfuncs.cpp" />
-    <ClCompile Include="Lab16.cpp" />
+    <ClCompile Include="project.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bmpfuncs.h" />

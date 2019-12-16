@@ -18,7 +18,7 @@
     <ClCompile Include="bmpfuncs.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Lab16.cpp">
+    <ClCompile Include="project.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

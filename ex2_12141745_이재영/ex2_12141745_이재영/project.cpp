@@ -5,11 +5,10 @@
 #include "ObjParser.h"
 #include"bmpfuncs.h"
 #include<fstream>
+#include<GL/glext.h>
 using namespace std;
 
 bool antialiase_on = false;
-int point[200][2] = { {0,0}, };
-int posta[200]{ 0, };
 int num = 0;
 double angle = 0;
 int ast = 0;
@@ -28,14 +27,25 @@ void resize(int width, int height);
 void draw_axis(void);
 void arrow(int key, int x, int y);
 void cubeTextureMapping();
+void mapcubeTextureMapping();
 float tx, ty, tz,trot;
+int g_nSkySize = 500;
 
+vec calculate_vec(vec input, GLfloat mat[]);
 GLuint texname[2];
+GLuint g_nCubeTex;
+
+struct vec {
+	float x;
+	float y;
+	float z;
+};
 
 struct block {
 	int name;
 	int color;
 	GLfloat matrix[16];
+	vec* crash;
 };
 
 GLfloat temp_matrix[16];
@@ -56,6 +66,26 @@ GLfloat specular_sun[] = { 1.0f,1.0f,1.0f,1.0f };
 GLfloat light_position[] = { 0.0f,0.0f,0.0f,1.0f };
 
 int position = 0;
+
+vec calculate_vec(vec input, GLfloat mat[]) {
+	vec temp;
+
+	temp.x = input.x * mat[0] + input.y * mat[1]
+		+ input.z * mat[2] + 1* mat[3];
+	temp.y = input.x * mat[4] + input.y * mat[5]
+		+ input.z * mat[6] + 1* mat[7];
+	temp.z = input.x * mat[8] + input.y * mat[9]
+		+ input.z * mat[10] + 1* mat[11];
+	float one= input.x * mat[12] + input.y * mat[13]
+		+ input.z * mat[14] + 1* mat[15];
+	temp.x = temp.x / one;
+	temp.y = temp.y / one;
+	temp.z = temp.z / one;
+
+	return temp;
+}
+
+
 
 void init() {
 	/*화면의 기본색으로 black 설정 */
@@ -93,7 +123,39 @@ void init() {
 	glHint(GL_POLYGON_SMOOTH_HINT, GL_FASTEST);
 
 	cubeTextureMapping();
+	mapcubeTextureMapping();
 	glEnable(GL_TEXTURE_2D);
+
+}
+
+void mapcubeTextureMapping() {
+	glGenTextures(1, &g_nCubeTex);
+	int width, height, channels;
+	uchar* img0 = readImageData("img/img/img/512px.bmp", &width, &height, &channels);
+	uchar* img1 = readImageData("img/img/img/512nx.bmp", &width, &height, &channels);
+	uchar* img2 = readImageData("img/img/img/512py.bmp", &width, &height, &channels);
+	uchar* img3 = readImageData("img/img/img/512ny.bmp", &width, &height, &channels);
+	uchar* img4 = readImageData("img/img/img/512pz.bmp", &width, &height, &channels);
+	uchar* img5 = readImageData("img/img/img/512nz.bmp", &width, &height, &channels);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, g_nCubeTex);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img0);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img1);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img2);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img3);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img4);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img5);
+
+	glBindTexture(GL_TEXTURE_CUBE_MAP, g_nCubeTex);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
+	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
+	glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_REFLECTION_MAP);
+
 
 }
 
@@ -142,6 +204,75 @@ void DrawLego(int index, int color) {
 
 
 }
+
+void draw_map() {
+
+	glPushMatrix();
+	glTranslatef(0, g_nSkySize / 10, 0);
+	glColor3f(1, 1, 1);
+	glDisable(GL_LIGHTING);
+	glEnable(GL_TEXTURE_CUBE_MAP);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, g_nCubeTex);
+	glBegin(GL_QUADS);
+	glTexCoord3d(1.0, 1.0, 1.0);
+	glVertex3f(g_nSkySize, -g_nSkySize, -g_nSkySize);
+	glTexCoord3d(1.0, 1.0, -1.0);
+	glVertex3f(g_nSkySize, -g_nSkySize, g_nSkySize);
+	glTexCoord3d(1.0, -1.0, -1.0);
+	glVertex3f(g_nSkySize, g_nSkySize, g_nSkySize);
+	glTexCoord3d(1.0, -1.0, 1.0);
+	glVertex3f(g_nSkySize, g_nSkySize, -g_nSkySize);
+
+	glTexCoord3d(-1.0, 1.0, 1.0);
+	glVertex3f(-g_nSkySize, -g_nSkySize, -g_nSkySize);
+	glTexCoord3d(-1.0, 1.0, -1.0);
+	glVertex3f(-g_nSkySize, -g_nSkySize, g_nSkySize);
+	glTexCoord3d(-1.0, -1.0, -1.0);
+	glVertex3f(-g_nSkySize, g_nSkySize, g_nSkySize);
+	glTexCoord3d(-1.0, -1.0, 1.0);
+	glVertex3f(-g_nSkySize, g_nSkySize, -g_nSkySize);
+
+
+	glTexCoord3d(-1.0, 1.0, -1.0);
+	glVertex3f(-g_nSkySize, g_nSkySize, -g_nSkySize);
+	glTexCoord3d(-1.0, 1.0, 1.0);
+	glVertex3f(-g_nSkySize, g_nSkySize, g_nSkySize);
+	glTexCoord3d(1.0, 1.0, 1.0);
+	glVertex3f(g_nSkySize, g_nSkySize, g_nSkySize);
+	glTexCoord3d(1.0, 1.0, -1.0);
+	glVertex3f(g_nSkySize, g_nSkySize, -g_nSkySize);
+
+	glTexCoord3d(-1.0, -1.0, -1.0);
+	glVertex3f(-g_nSkySize / 10, -g_nSkySize / 10, -g_nSkySize / 10);
+	glTexCoord3d(-1.0, -1.0, 1.0);
+	glVertex3f(-g_nSkySize / 10, -g_nSkySize / 10, g_nSkySize / 10);
+	glTexCoord3d(1.0, -1.0, 1.0);
+	glVertex3f(g_nSkySize / 10, -g_nSkySize / 10, g_nSkySize / 10);
+	glTexCoord3d(1.0, -1.0, -1.0);
+	glVertex3f(g_nSkySize / 10, -g_nSkySize / 10, -g_nSkySize / 10);
+
+	glTexCoord3d(1.0, 1.0, 1.0);
+	glVertex3f(-g_nSkySize, -g_nSkySize, g_nSkySize);
+	glTexCoord3d(1.0, -1.0, 1.0);
+	glVertex3f(-g_nSkySize, g_nSkySize, g_nSkySize);
+	glTexCoord3d(-1.0, -1.0, 1.0);
+	glVertex3f(g_nSkySize, g_nSkySize, g_nSkySize);
+	glTexCoord3d(-1.0, 1.0, 1.0);
+	glVertex3f(g_nSkySize, -g_nSkySize, g_nSkySize);
+
+	glTexCoord3d(1.0, 1.0, -1.0);
+	glVertex3f(-g_nSkySize, -g_nSkySize, -g_nSkySize);
+	glTexCoord3d(1.0, -1.0, -1.0);
+	glVertex3f(-g_nSkySize, g_nSkySize, -g_nSkySize);
+	glTexCoord3d(-1.0, -1.0, -1.0);
+	glVertex3f(g_nSkySize, g_nSkySize, -g_nSkySize);
+	glTexCoord3d(-1.0, 1.0, -1.0);
+	glVertex3f(g_nSkySize, -g_nSkySize, -g_nSkySize);
+	glEnd();
+	glDisable(GL_TEXTURE_CUBE_MAP);
+	glPopMatrix();
+}
+
 void draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -154,7 +285,7 @@ void draw() {
 		gluLookAt(r*sin(se)*cos(fi), r*cos(se), r*sin(se)*sin(fi), 0, 0, 0, 0, -1, 0);
 	else
 		gluLookAt(r*sin(se)*cos(fi), r*cos(se), r*sin(se)*sin(fi), 0, 0, 0, 0, 1, 0);
-	
+
 	draw_axis();
 
 	for (int i = 0; i < a.size(); i++) {
@@ -178,6 +309,7 @@ void draw() {
 	DrawLego(s, c);
 	glPopMatrix();
 
+
 	glFlush();
 	glutSwapBuffers();
 
@@ -188,11 +320,6 @@ void draw() {
 
 void mouse(int button, int state, int x, int y) {
 	printf("Mouse button is clicked! (%d, %d, %d, %d)\n", button, state, x, 500 - y);
-	if (state == 0) {
-		point[num][0] = x;
-		point[num][1] = 500 - y;
-
-	}
 	if (button == 3 && state == 1)		//휠을 당겼을 때 확대
 		if (r > 5)
 			r -= 0.2;
@@ -227,8 +354,8 @@ void motion(int x, int y) {
 
 		if (se > 360 * pi / 180)
 			se = 1 * pi / 180;			
-		else if (se <= 0)
-			se = 360 * pi / 180;
+		else if (se > 85*pi/180)
+			se = 85* pi / 180;
 	}
 	printf("se=%f, fi=%f\n", se / pi * 180, fi / pi * 180);
 	glutPostRedisplay();
@@ -359,7 +486,7 @@ void resize(int width, int height) {
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);	//시점용 매트릭스 설정
 	glLoadIdentity();		//단위행렬 초기화
-	gluPerspective(45, (float)width / (float)height, 1, 300);	//1~300 범위에서, 변경한 윈도우만큼 시점을 변경
+	gluPerspective(45, (float)width / (float)height, 1, 1000);	//1~300 범위에서, 변경한 윈도우만큼 시점을 변경
 	glMatrixMode(GL_MODELVIEW);		//그리기용 매트릭스 설정
 	printf("resize complete, width=%d, height=%d\n", width, height);
 }
