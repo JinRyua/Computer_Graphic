@@ -20,16 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmpfuncs.cpp" />
-    <ClCompile Include="calculate.cpp" />
     <ClCompile Include="global.cpp" />
-    <ClCompile Include="interaction.cpp" />
     <ClCompile Include="project.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bmpfuncs.h" />
-    <ClInclude Include="calculate.h" />
     <ClInclude Include="global.h" />
-    <ClInclude Include="interaction.h" />
     <ClInclude Include="ObjParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -21,20 +21,11 @@
     <ClCompile Include="project.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="interaction.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="calculate.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="global.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="interaction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ObjParser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -42,9 +33,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="global.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="calculate.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
