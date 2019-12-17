@@ -7,6 +7,10 @@
 #include<fstream>
 #include<GL/glext.h>
 #include<algorithm>
+#include<windows.h>
+#include<mmsystem.h>
+#pragma comment(lib,"winmm.lib");
+
 #include"global.h"
 #include"calculate.h"
 #include"interaction.h"
@@ -86,39 +90,97 @@ void draw() {
 		gluLookAt(r*sin(se)*cos(fi), r*cos(se), r*sin(se)*sin(fi), 0, 0, 0, 0, -1, 0);
 	else
 		gluLookAt(r*sin(se)*cos(fi), r*cos(se), r*sin(se)*sin(fi), 0, 0, 0, 0, 1, 0);
+	if (modestate == 0) {
+		draw_axis();
 
-	draw_axis();
+		for (int i = 0; i < a.size(); i++) {
+			GLfloat tempm[16];					//수정필요
+			glPushMatrix();
+			glMultMatrixf(a.at(i).matrix);
+			if (a.at(i).name == '7') {
+				glTranslatef(0, 0.5, 0);		//회전
+				glRotatef(tankangle, 0, 0, -1);
+				glTranslatef(0, -0.5, 0);
+			}
+			else if (a.at(i).name == '8') {//&&check_engine()) {				//회전
+				glTranslatef(0, 0.5, 0);
+				glRotatef(motorangle, 1, 0, 0);
+				glTranslatef(0, -0.5, 0);
+			}
+			DrawLego(a.at(i).name, a.at(i).color);
+			glPopMatrix();
+		}
 
-	for (int i = 0; i < a.size(); i++) {
-		GLfloat tempm[16];					//수정필요
+
+
+
 		glPushMatrix();
-		glMultMatrixf(a.at(i).matrix);
-		DrawLego(a.at(i).name, a.at(i).color);
+		if (startcount == 1) {
+			//int y = 0;
+			//for (int i = 0; i < a.size(); i++)
+			//	if (y <= a.at(i).crash[1].y)
+			//		y = a.at(i).crash[1].y;
+			//ty = y;
+			calculate_mat();
+			while (check_crash()) {
+				tx += 0.1;
+				calculate_mat();
+			}
+			startcount = 0;
+		}
+		glLoadIdentity();
+		glTranslatef(tx, ty, tz);
+		glRotatef(trot, 0, 1, 0);
+		glGetFloatv(GL_MODELVIEW_MATRIX, temp_matrix);
 		glPopMatrix();
+
+		glPushMatrix();
+		glMultMatrixf(temp_matrix);
+		if (s == '7') {
+			glTranslatef(0, 0.5, 0);		//회전
+			glRotatef(tankangle, 0, 0, -1);
+			glTranslatef(0, -0.5, 0);
+		}
+		else if (s == '8') {//&&check_engine()) {				//회전
+			glTranslatef(0, 0.5, 0);
+			glRotatef(motorangle, 1, 0, 0);
+			glTranslatef(0, -0.5, 0);
+		}
+		DrawLego(s, c);
+		glPopMatrix();
+
+
+		glFlush();
+		glutSwapBuffers();
 	}
-
-
-	glPushMatrix();
-	glLoadIdentity();
-	glTranslatef(tx, ty, tz);
-	glRotatef(trot, 0, 1, 0);
-	glGetFloatv(GL_MODELVIEW_MATRIX, temp_matrix);
-	glPopMatrix();
-
-	glPushMatrix();
-	glMultMatrixf(temp_matrix);
-	DrawLego(s, c);
-	glPopMatrix();
-
-
-	glFlush();
-	glutSwapBuffers();
-
+	else if (modestate == 1) {
+		for (int i = 0; i < a.size(); i++) {
+			GLfloat tempm[16];					//수정필요
+			glPushMatrix();
+			glMultMatrixf(a.at(i).matrix);
+			if (a.at(i).name == '7') {
+				glTranslatef(0, 0.5, 0);		//회전
+				glRotatef(tankangle, 0, 0, -1);
+				glTranslatef(0, -0.5, 0);
+			}
+			else if (a.at(i).name == '8') {//&&check_engine()) {				//회전
+				glTranslatef(0, 0.5, 0);
+				glRotatef(motorangle, 1, 0, 0);
+				glTranslatef(0, -0.5, 0);
+			}
+			DrawLego(a.at(i).name, a.at(i).color);
+			glPopMatrix();
+		}
+		draw_map();
+		glFlush();
+		glutSwapBuffers();
+	}
 
 
 }
 
 int main(int argc, char** argv) {
+	PlaySound(TEXT("abc.wav"), NULL, SND_ASYNC | SND_LOOP);
 	/* Windows 초기화 */
 	int submenu1;
 	glutInit(&argc, argv);
@@ -129,16 +191,16 @@ int main(int argc, char** argv) {
 	glutCreateWindow("My First GL Program");
 	init();
 
-	submenu1 = glutCreateMenu(sub_menu_function);
-	glutAddMenuEntry("Point", 1);
-	glutAddMenuEntry("Line", 2);
-	glutAddMenuEntry("Triangle", 3);
+	//submenu1 = glutCreateMenu(sub_menu_function);
+	//glutAddMenuEntry("Point", 1);
+	//glutAddMenuEntry("Line", 2);
+	//glutAddMenuEntry("Triangle", 3);
 
 	glutCreateMenu(main_menu_function);
-	glutAddMenuEntry("clear!", 11);
+	glutAddMenuEntry("CreateMode", 11);
+	glutAddMenuEntry("GameMode", 10);
 	glutAddMenuEntry("Quit", 999);
-	glutAddMenuEntry("Anti", 10);
-	glutAddSubMenu("Sub Menu", submenu1);
+	//glutAddSubMenu("Sub Menu", submenu1);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 
@@ -146,7 +208,7 @@ int main(int argc, char** argv) {
 	glutMouseFunc(mouse);
 	glutMotionFunc(motion);
 	glutKeyboardFunc(keyboard);
-	//glutIdleFunc(idle);
+	glutIdleFunc(idle);
 	glutReshapeFunc(resize);
 	glutSpecialFunc(arrow);
 	glutMainLoop();

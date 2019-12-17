@@ -22,28 +22,30 @@ vec find_vec(int s, int count) {
 	if (count == 1) {
 		switch (s) {
 		case '1':
+		case '8':
 			temp.x = 0.5;
 			temp.y = 1;
 			temp.z = -0.5;
 			break;
 		case '2':
-			temp.x = 1;
-			temp.y = 1;
-			temp.z = -0.5;
-			break;
 		case '3':
-			temp.x = 1.5;
+			temp.x = 1.45;
 			temp.y = 1;
 			temp.z = -0.5;
 			break;
 		case '4':
 		case '6':
-			temp.x = 1;
+			temp.x = 1.45;
 			temp.y = 1;
-			temp.z = -1;
+			temp.z = -1.5;
 			break;
 		case '5':
 			temp.x = 0.5;
+			temp.y = 2;
+			temp.z = -0.5;
+			break;
+		case '7':
+			temp.x = 1.45;
 			temp.y = 2;
 			temp.z = -0.5;
 			break;
@@ -51,32 +53,28 @@ vec find_vec(int s, int count) {
 
 	}
 	else {
-		switch (s) {
-		case '1':
-		case '5':
-			temp.x = -0.5;
-			temp.y = 0;
-			temp.z = 0.5;
-			break;
-		case '2':
-			temp.x = -1;
-			temp.y = 0;
-			temp.z = 0.5;
-			break;
-		case '3':
-			temp.x = -1.5;
-			temp.y = 0;
-			temp.z = 0.5;
-			break;
-		case '4':
-		case '6':
-			temp.x = -1;
-			temp.y = 0;
-			temp.z = 1;
-			break;
-
-
-		}
+	switch (s) {
+	case '1':
+	case '5':
+	case '8':
+	case '2':
+	case '4':
+	case '6':
+		temp.x = -0.5;
+		temp.y = 0;
+		temp.z = 0.5;
+		break;
+	case '3':
+		temp.x = -1.5;
+		temp.y = 0;
+		temp.z = 0.5;
+		break;
+	case '7':
+		temp.x = -0.5;
+		temp.y = 0;
+		temp.z = 0.5;
+		break;
+	}
 
 	}
 	return temp;
@@ -106,7 +104,6 @@ bool check_crash() {
 		float h1 = (max(temp[0].x, temp[1].x) + min(temp[0].x, temp[1].x)) / 2;
 		float h2 = (max(temp2.crash[0].x, temp2.crash[1].x) + min(temp2.crash[0].x, temp2.crash[1].x)) / 2;
 		h1 = max(h1, h2) - min(h1, h2);
-		printf("%f,%f\n", h1, x[0] + x[1]);
 		if (h1 < x[0] + x[1])
 			check++;
 
@@ -115,7 +112,6 @@ bool check_crash() {
 		h1 = (max(temp[0].y, temp[1].y) + min(temp[0].y, temp[1].y)) / 2;
 		h2 = (max(temp2.crash[0].y, temp2.crash[1].y) + min(temp2.crash[0].y, temp2.crash[1].y)) / 2;
 		h1 = max(h1, h2) - min(h1, h2);
-		printf("%f,%f\n", h1, x[0] + x[1]);
 		if (h1 < x[0] + x[1])
 			check++;
 
@@ -124,12 +120,81 @@ bool check_crash() {
 		h1 = (max(temp[0].z, temp[1].z) + min(temp[0].z, temp[1].z)) / 2;
 		h2 = (max(temp2.crash[0].z, temp2.crash[1].z) + min(temp2.crash[0].z, temp2.crash[1].z)) / 2;
 		h1 = max(h1, h2) - min(h1, h2);
-		printf("%f,%f\n", h1, x[0] + x[1]);
 		if (h1 < x[0] + x[1])
 			check++;
 
-		if (check == 3)
+		if (check == 3) {
+			printf("crashed!!\n");
 			return true;
+		}
+	}
+	return false;
+}
+
+bool check_engine() {
+	vec temp[2];
+	for (int i = 0; i < 2; i++) {
+		temp[i] = find_vec(s, i);
+		temp[i] = calculate_vec(temp[i], temp_matrix);
+	}
+	for (int i = 0; i < a.size(); i++) {
+		if (a.at(i).name == '6') {
+			int check = 0;
+			float x[2];
+			block temp2 = a.at(i);
+			printf("%f,%f,%f,   temp20:%f,%f,%f temp21:%f,%f,%f\n", temp[0].x, temp[0].y, temp[0].z,
+				temp2.crash[0].x, temp2.crash[0].y, temp2.crash[0].z, temp2.crash[1].x, temp2.crash[1].y, temp2.crash[1].z);
+			
+
+			//temp[0]
+		if (temp[0].x == temp2.crash[0].x || temp[0].x == temp2.crash[1].x) {
+				if (temp[0].z <= max(temp2.crash[0].z, temp2.crash[1].z) &&
+					temp[0].z >= min(temp2.crash[0].z, temp2.crash[1].z))
+					if (temp[0].y <= max(temp2.crash[0].y, temp2.crash[1].y) &&
+						temp[0].y >= min(temp2.crash[0].y, temp2.crash[1].y)) {
+						printf("true\n");
+						return true;
+					}
+			}
+			else if (temp[0].z == temp2.crash[0].z || temp[0].z == temp2.crash[1].z) {
+				if (temp[0].x <= max(temp2.crash[0].x, temp2.crash[1].x) &&
+					temp[0].x >= min(temp2.crash[0].x, temp2.crash[1].x))
+					if (temp[0].y <= max(temp2.crash[0].y, temp2.crash[1].y) &&
+						temp[0].y >= min(temp2.crash[0].y, temp2.crash[1].y)) {
+						printf("true\n");
+						return true;
+					}
+			}
+
+			//x[0] = (max(temp[0].x, temp[1].x) - min(temp[0].x, temp[1].x)) / 2;
+			//x[1] = (max(temp2.crash[0].x, temp2.crash[1].x) - min(temp2.crash[0].x, temp2.crash[1].x)) / 2;
+			//float h1 = (max(temp[0].x, temp[1].x) + min(temp[0].x, temp[1].x)) / 2;
+			//float h2 = (max(temp2.crash[0].x, temp2.crash[1].x) + min(temp2.crash[0].x, temp2.crash[1].x)) / 2;
+			//h1 = max(h1, h2) - min(h1, h2);
+			//if (h1 == x[0] + x[1])
+			//	check++;
+
+			//x[0] = (max(temp[0].y, temp[1].y) - min(temp[0].y, temp[1].y)) / 2;
+			//x[1] = (max(temp2.crash[0].y, temp2.crash[1].y) - min(temp2.crash[0].y, temp2.crash[1].y)) / 2;
+			//h1 = (max(temp[0].y, temp[1].y) + min(temp[0].y, temp[1].y)) / 2;
+			//h2 = (max(temp2.crash[0].y, temp2.crash[1].y) + min(temp2.crash[0].y, temp2.crash[1].y)) / 2;
+			//h1 = max(h1, h2) - min(h1, h2);
+			//if (h1 == x[0] + x[1])
+			//	check++;
+
+			//x[0] = (max(temp[0].z, temp[1].z) - min(temp[0].z, temp[1].z)) / 2;
+			//x[1] = (max(temp2.crash[0].z, temp2.crash[1].z) - min(temp2.crash[0].z, temp2.crash[1].z)) / 2;
+			//h1 = (max(temp[0].z, temp[1].z) + min(temp[0].z, temp[1].z)) / 2;
+			//h2 = (max(temp2.crash[0].z, temp2.crash[1].z) + min(temp2.crash[0].z, temp2.crash[1].z)) / 2;
+			//h1 = max(h1, h2) - min(h1, h2);
+			//if (h1 == x[0] + x[1])
+			//	check++;
+
+			//if (check>=2) {
+			//	printf("engine!!\n");
+			//	return true;
+			//}
+		}
 	}
 	return false;
 }

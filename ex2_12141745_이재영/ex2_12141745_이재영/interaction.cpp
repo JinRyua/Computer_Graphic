@@ -1,5 +1,21 @@
 #include"interaction.h"
 
+void idle() {
+	if (tankcount == 0)
+		tankangle += 0.5;
+	else
+		tankangle -= 0.5;
+	if (tankangle > 90)
+		tankcount = 1;
+	else if (tankangle < 0)
+		tankcount = 0;
+
+	motorangle += 1;
+	if (motorangle > 360)
+		motorangle = 0;
+	glutPostRedisplay();
+}
+
 void sub_menu_function(int option) {
 	printf("Submenu %d has been selected\n", option);
 
@@ -7,12 +23,46 @@ void sub_menu_function(int option) {
 
 void main_menu_function(int option) {
 	printf("Main menu %d has benn selected\n", option);
-	if (option == 11)
-		num = 0;
+	if (option == 11) {
+		modestate = 0;
+		a.clear();
+	}
 	if (option == 999)
 		exit(0);
-	if (option == 10)
-		antialiase_on = !antialiase_on;
+	if (option == 10) {
+		modestate = 1;
+		a.clear();
+		unitvec[0].x = unitvec[0].y = unitvec[0].z = 0;
+		unitvec[1].x = unitvec[1].y = unitvec[1].z = 0;
+		ifstream inFile("output.txt");
+		while (!inFile.eof()) {
+			block k;
+			int tname, tcolor;
+			GLfloat tMatrix[16];
+			inFile >> k.name >> k.color;
+			for (int j = 0; j < 16; j++)
+				inFile >> k.matrix[j];
+			for (int j = 0; j < 2; j++)
+				inFile >> k.crash[j].x >> k.crash[j].y >>
+				k.crash[j].z;
+			if (k.crash[0].x > unitvec[0].x)
+				unitvec[0].x = k.crash[0].x;
+			if (k.crash[0].y > unitvec[0].y)
+				unitvec[0].y= k.crash[0].y;
+			if (k.crash[0].z > unitvec[0].z)
+				unitvec[0].z = k.crash[0].z;
+
+			if (k.crash[1].x < unitvec[1].x)
+				unitvec[1].x = k.crash[1].x;
+			if (k.crash[1].y < unitvec[1].y)
+				unitvec[1].y = k.crash[1].y;
+			if (k.crash[1].z < unitvec[1].z)
+				unitvec[1].z = k.crash[0].z;
+			a.push_back(k);
+		}
+		inFile.close();
+
+	}
 	glutPostRedisplay();
 }
 
@@ -38,15 +88,25 @@ void arrow(int key, int x, int y) {
 		break;
 	case GLUT_KEY_UP:
 		s++;
+		calculate_mat();
+		while (check_crash()) {
+			tx += 0.1;
+			calculate_mat();
+		}
 		break;
 	case GLUT_KEY_DOWN:
 		s--;
+		calculate_mat();
+		while (check_crash()) {
+			tx += 0.1;
+			calculate_mat();
+		}
 		break;
 	}
-	if (s > '6')
+	if (s > '8')
 		s = '1';
 	else if (s < '1')
-		s = '6';
+		s = '8';
 
 	if (c > 8)
 		c = 1;			//360도 이상일때, 값을 1부터 변경하게 함
@@ -75,7 +135,7 @@ void mouse(int button, int state, int x, int y) {
 		if (r > 5)
 			r -= 0.2;
 	if (button == 4 && state == 1)		//휠을 밀었을 때 축소
-		if (r < 15)
+		if (r < 20)
 			r += 0.2;
 	if (button == 0)					//좌클릭으로 드래그를 시작할때
 		if (state == 0) {
@@ -122,58 +182,63 @@ void keyboard(unsigned char key, int x, int y) {
 		r = 7;
 	}
 	if (key == 'a') {
-		tx -= 0.2;
+		tx -= 0.1;
 		calculate_mat();
 		if (check_crash() == true) {
-			tx += 0.2;
+			tx += 0.1;
 			calculate_mat();
 		}
 	}
 	if (key == 's') {
-		tz += 0.2;
+		tz += 0.1;
 		calculate_mat();
 		if (check_crash() == true) {
-			tz -= 0.2;
+			tz -= 0.1;
 			calculate_mat();
 		}
 	}
 	if (key == 'w') {
-		tz -= 0.2;
+		tz -= 0.1;
 		calculate_mat();
 		if (check_crash() == true) {
-			tz += 0.2;
+			tz += 0.1;
 			calculate_mat();
 		}
 	}
 	if (key == 'd') {
-		tx += 0.2;
+		tx += 0.1;
 		calculate_mat();
 		if (check_crash() == true) {
-			tx -= 0.2;
+			tx -= 0.1;
 			calculate_mat();
 		}
 	}
 	if (key == 'z') {
-		ty += 0.2;
+		ty += 0.1;
 		calculate_mat();
 		if (check_crash() == true) {
-			ty -= 0.2;
+			ty -= 0.1;
 			calculate_mat();
 		}
 	}
 	if (key == 'c') {
-		ty -= 0.2;
+		ty -= 0.1;
 		calculate_mat();
 		if (check_crash() == true) {
-			ty += 0.2;
+			ty += 0.1;
 			calculate_mat();
 		}
 	}
-	if (key == 'q')
-		if (trot < 360)
-			trot += 90;
-		else
+	if (key == 'q') {
+		trot += 90;
+		calculate_mat();
+		if (check_crash() == true) {
+			trot -=90;
+			calculate_mat();
+		}
+		if (trot>=360)
 			trot = 0;
+	}
 	if (key == 32) {
 		block temp = { s,c };
 		for (int i = 0; i < 16; i++)
@@ -187,7 +252,8 @@ void keyboard(unsigned char key, int x, int y) {
 		}
 
 		a.push_back(temp);
-		tx = ty = tz = trot = 0;
+		tx = ty=tz = trot = 0;
+		startcount = 1;
 	}
 	if (key == 'r')
 		if (!a.empty())

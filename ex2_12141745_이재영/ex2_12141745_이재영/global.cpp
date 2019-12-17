@@ -1,9 +1,15 @@
 #include"global.h"
 using namespace std;
 
+vec unitvec[2];
 bool antialiase_on = false;
+int modestate = 2;
+int startcount = 1;
+int tankcount = 1;
+int motorcount = 1;
+int motorangle = 0;
 int num = 0;
-double angle = 0;
+double tankangle = 0;
 int ast = 0;
  int mx, my, mstat;
  int s = '1';

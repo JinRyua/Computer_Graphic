@@ -15,9 +15,15 @@ struct block {
 	GLfloat matrix[16];
 	vec crash[2];
 };
+extern vec unitvec[2];
+extern int modestate;
+extern int startcount;
+extern int tankcount;
+extern int motorcount;
+extern int motorangle;
 extern bool antialiase_on;
 extern int num;
-extern double angle;
+extern double tankangle;
 extern int ast;
 extern int mx, my, mstat;
 extern int s;

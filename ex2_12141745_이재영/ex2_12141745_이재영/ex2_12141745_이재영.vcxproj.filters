@@ -18,9 +18,6 @@
     <ClCompile Include="bmpfuncs.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="project.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="global.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -31,6 +28,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="mapping.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="project.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
